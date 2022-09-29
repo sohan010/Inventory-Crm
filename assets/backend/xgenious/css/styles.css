@@ -1,0 +1,178 @@
+
+/*-------------------- 9. Alert------------------- */
+.alert {
+    letter-spacing: 0;
+    font-size: 13px;
+    border: none;
+    padding: 10px 16px;
+}
+
+.alert strong,
+.alert-link {
+    font-weight: 600;
+}
+
+.alert-items .alert-primary {
+    color: #4796ea;
+    background-color: #c8e1fb;
+}
+
+.alert-items .alert-primary .alert-link {
+    color: #4796ea;
+}
+
+.alert-items .alert-success {
+    color: #36b398;
+    background-color: #cff1ea;
+}
+
+.alert-items .alert-success .alert-link {
+    color: #36b398;
+}
+
+.alert-items .alert-danger {
+    color: #f96776;
+    background-color: #ffdde0;
+}
+
+.alert-items .alert-danger .alert-link {
+    color: #f96776;
+}
+
+.alert-items .alert-warning {
+    color: #d6a20c;
+    background-color: #f9efd2;
+}
+
+.alert-items .alert-warning .alert-link {
+    color: #d6a20c;
+}
+
+/* additional content */
+
+.alert-heading {
+    margin-bottom: 7px;
+}
+
+.alert-dismiss .alert {
+    padding: 13px 15px;
+}
+
+.alert-dismiss .alert-dismissible .close {
+    top: 4px;
+    outline: none;
+    font-size: 13px;
+}
+
+
+
+
+/*-------------------- 25. 404 Page ------------------- */
+
+.error-area {
+    min-height: 100vh;
+    background: #F3F8FB;
+}
+
+.error-content {
+    background: #fff;
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    padding: 70px 30px;
+}
+
+.error-content h2 {
+    font-size: 98px;
+    font-weight: 800;
+    color: #686cdc;
+    margin-bottom: 28px;
+    text-shadow: -3px -3px 0 #ffffff, 3px -3px 0 #ffffff, -3px 3px 0 #ffffff, 3px 3px 0 #ffffff, 4px 4px 0 #6569dc, 5px 5px 0 #6569dc, 6px 6px 0 #6569dc, 7px 7px 0 #6569dc;
+    font-family: 'lato', sans-serif;
+}
+
+.error-content img {
+    margin-bottom: 50px;
+}
+
+.error-content p {
+    font-size: 17px;
+    color: #787bd8;
+    font-weight: 600;
+}
+
+.error-content a {
+    display: inline-block;
+    margin-top: 40px;
+    background: #656aea;
+    color: #fff;
+    padding: 16px 26px;
+    border-radius: 3px;
+}
+
+/*-------------------- END 404 Page ------------------- */
+
+
+
+/*Switcher Css*/
+
+.switch-new{}
+.switch-new .switch-input-new {
+    visibility: hidden;
+}
+.switch-new .switch-input-new:checked + .switch-new-label {
+    transform: rotate(0deg);
+    background-color: #f13b3a;
+
+}
+.switch-new .switch-input-new:checked + .switch-new-label:before {
+    transform: translate(42px, -50%);
+    background-color: #fff;
+}
+
+.switch-new .switch-new-label {
+    display: flex;
+    width: 80px;
+    height: 35px;
+    border: 2px solid #f13b3a;
+    border-radius: 99em;
+    position: relative;
+    transition: transform 0.3s ease-in-out;
+    transform-origin: 50% 50%;
+    cursor: pointer;
+}
+.switch-new .switch-new-label:before {
+    transition: transform 0.4s ease;
+    transition-delay: 0.01s;
+    content: "";
+    display: block;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #f13b3a;
+    border-radius: 50%;
+    top: 50%;
+    left: 7px;
+    transform: translateY(-50%);
+}
+
+/*Radio Button Code*/
+.post_type_radio{
+    margin: 0px 0px;
+}
+
+.post_type_radio h6{
+    font-size: 18px;
+}
+
+.post_type_radio .form-check {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.meta-tabs .nav-pills .nav-link {
+    padding: 10px 15px;
+    border: 1px solid #007bff;
+    margin: 0 5px;
+}
+

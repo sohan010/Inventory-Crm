@@ -1,0 +1,2 @@
+<link rel="stylesheet" href="<?php echo e(asset('assets/backend/xgenious/css/dropzone.css')); ?>">
+<link rel="stylesheet" href="<?php echo e(asset('assets/backend/xgenious/css/media-uploader.css')); ?>"><?php /**PATH H:\xampp\htdocs\inventory-crm\@core\resources\views/components/media/css.blade.php ENDPATH**/ ?>
