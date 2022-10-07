@@ -2,17 +2,25 @@
 @section('site-title')
     {{__('SMTP Settings')}}
 @endsection
+
+@section('page-title')
+    {{__('SMTP Settings')}}
+@endsection
+
 @section('content')
     <div class="col-lg-12 col-ml-12 padding-bottom-30">
         <div class="row">
            <div class="col-lg-12 mt-2">
-               @include('backend.partials.message')
+               <x-msg.success/>
                <x-msg.error/>
            </div>
             <div class="col-6 mt-5">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-header">
                         <h4 class="header-title">{{__("SMTP Settings")}}</h4>
+                    </div>
+                    <div class="card-body">
+
                         <form action="{{route('admin.general.smtp.settings')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
@@ -57,8 +65,11 @@
             </div>
             <div class="col-6 mt-5">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-header">
                         <h4 class="header-title">{{__("SMTP Test")}}</h4>
+                    </div>
+                    <div class="card-body">
+
                         <form action="{{route('admin.general.smtp.settings.test')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">

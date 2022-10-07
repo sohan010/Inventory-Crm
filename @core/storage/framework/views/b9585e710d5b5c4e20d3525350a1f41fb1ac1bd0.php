@@ -1,30 +1,89 @@
 <?php $__env->startSection('style'); ?>
-<link rel="stylesheet" href="<?php echo e(asset('assets/backend/css/dropzone.css')); ?>">
-    <link rel="stylesheet" href="<?php echo e(asset('assets/backend/css/media-uploader.css')); ?>">
-<?php echo $__env->make('backend.partials.datatable.style-enqueue', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
+<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.media.css','data' => []]); ?>
+<?php $component->withName('media.css'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
+<?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
+<?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
+<?php endif; ?>
+    <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
+<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.admin-press-datatable.css','data' => []]); ?>
+<?php $component->withName('admin-press-datatable.css'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
+<?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
+<?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
+<?php endif; ?>
 <?php $__env->stopSection(); ?>
+
 <?php $__env->startSection('site-title'); ?>
     <?php echo e(__('All Admins')); ?>
 
 <?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('page-title'); ?>
+    <?php echo e(__('All Admins')); ?>
+
+<?php $__env->stopSection(); ?>
+
 <?php $__env->startSection('content'); ?>
-    <div class="col-lg-12 col-ml-12 padding-bottom-30">
+
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-12 mt-5">
+            <div class="col-12">
+                <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
+<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.msg.error','data' => []]); ?>
+<?php $component->withName('msg.error'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
+<?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
+<?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
+<?php endif; ?>
+                <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
+<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.msg.success','data' => []]); ?>
+<?php $component->withName('msg.success'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
+<?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
+<?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
+<?php endif; ?>
                 <div class="card">
-                    <div class="card-body">
-                        <div class="col-12 mt-5">
-                            <div class="card">
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between">
+                            <div class="left">
+                                <h4 class="header-title"><?php echo e(__('All Admin Created By Super Admin')); ?></h4>
+                            </div>
+                            <div class="right">
+                                <a href="<?php echo e(route('admin.new.user')); ?>" class="btn btn-info text-white"><?php echo e(__('Add Admin')); ?></a>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="col-12">
                                 <div class="card-body">
-                                    <?php echo $__env->make('backend/partials/message', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-                                    <?php echo $__env->make('backend/partials/error', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-                                    <h4 class="header-title"><?php echo e(__('All Admin Created By Super Admin')); ?></h4>
-                                    <div class="data-tables datatable-primary">
-                                        <table id="all_user_table" class="text-center">
+                                    <div class="table-responsive m-t-40">
+                                        <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                                             <thead class="text-capitalize">
                                             <tr>
                                                 <th><?php echo e(__('ID')); ?></th>
                                                 <th><?php echo e(__('Name')); ?></th>
+                                                <th><?php echo e(__('Email')); ?></th>
                                                 <th><?php echo e(__('Image')); ?></th>
                                                 <th><?php echo e(__('Role')); ?></th>
                                                 <th><?php echo e(__('Action')); ?></th>
@@ -35,6 +94,7 @@
                                                 <tr>
                                                     <td><?php echo e($data->id); ?></td>
                                                     <td><?php echo e($data->name); ?> (<?php echo e($data->username); ?>)</td>
+                                                    <td><?php echo e($data->email); ?></td>
                                                     <td>
                                                         <?php
                                                         $img = get_attachment_image_by_id($data->image,null,true);
@@ -59,6 +119,21 @@
                                                         <?php endif; ?>
                                                     </td>
                                                     <td>
+
+
+                                                        <a href="#"
+                                                           data-id="<?php echo e($data->id); ?>"
+                                                           data-toggle="modal"
+                                                           data-target="#user_change_password_modal"
+                                                           class="btn btn-lg btn-outline-info btn-sm mb-3 mr-1 user_change_password_btn"
+                                                        >
+                                                            <?php echo e(__("Change Password")); ?>
+
+                                                        </a>
+
+                                                        <a href="<?php echo e(route('admin.user.edit',$data->id)); ?>" class="btn btn-lg btn-outline-primary btn-sm mb-3 mr-1 user_edit_btn">
+                                                            <i class="ti-pencil"></i>
+                                                        </a>
                                                         <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
 <?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.delete-popover','data' => ['url' => route('admin.delete.user',$data->id)]]); ?>
 <?php $component->withName('delete-popover'); ?>
@@ -71,18 +146,6 @@
 <?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
 <?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
 <?php endif; ?>
-                                                        <a href="<?php echo e(route('admin.user.edit',$data->id)); ?>" class="btn btn-lg btn-primary btn-sm mb-3 mr-1 user_edit_btn">
-                                                            <i class="ti-pencil"></i>
-                                                        </a>
-                                                        <a href="#"
-                                                           data-id="<?php echo e($data->id); ?>"
-                                                           data-toggle="modal"
-                                                           data-target="#user_change_password_modal"
-                                                           class="btn btn-lg btn-info btn-sm mb-3 mr-1 user_change_password_btn"
-                                                        >
-                                                            <?php echo e(__("Change Password")); ?>
-
-                                                        </a>
                                                     </td>
                                                 </tr>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -90,50 +153,55 @@
                                         </table>
                                     </div>
                                 </div>
-                            </div>
+                           </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <div class="modal fade" id="user_change_password_modal" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title"><?php echo e(__('Change Admin Password')); ?></h5>
-                    <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
-                </div>
-                <?php echo $__env->make('backend/partials/error', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-                <form action="<?php echo e(route('admin.user.password.change')); ?>" id="user_password_change_modal_form" method="post" enctype="multipart/form-data">
-                    <?php echo csrf_field(); ?>
-                    <div class="modal-body">
-                        <input type="hidden" name="ch_user_id" id="ch_user_id">
-                        <div class="form-group">
-                            <label for="password"><?php echo e(__('Password')); ?></label>
-                            <input type="password" class="form-control" name="password" placeholder="<?php echo e(__('Enter Password')); ?>">
-                        </div>
-                        <div class="form-group">
-                            <label for="password_confirmation"><?php echo e(__('Confirm Password')); ?></label>
-                            <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="<?php echo e(__('Confirm Password')); ?>">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal"><?php echo e(__('Close')); ?></button>
-                        <button type="submit" class="btn btn-primary"><?php echo e(__('Change Password')); ?></button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <?php echo $__env->make('backend.partials.media-upload.media-upload-markup', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
+<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.media.markup','data' => []]); ?>
+<?php $component->withName('media.markup'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
+<?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
+<?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
+<?php endif; ?>
 <?php $__env->stopSection(); ?>
+
+
 <?php $__env->startSection('script'); ?>
-    <!-- Start datatable js -->
-    <?php echo $__env->make('backend.partials.datatable.script-enqueue', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-    <script src="<?php echo e(asset('assets/backend/js/dropzone.js')); ?>"></script>
-    <?php echo $__env->make('backend.partials.media-upload.media-js', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
+    <?php echo $__env->make('backend.popup-modals.admin.change-password', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
+<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.media.js','data' => []]); ?>
+<?php $component->withName('media.js'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
+<?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
+<?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
+<?php endif; ?>
+    <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
+<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.admin-press-datatable.js','data' => []]); ?>
+<?php $component->withName('admin-press-datatable.js'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
+<?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
+<?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
+<?php endif; ?>
+
     <script>
     (function($){
     "use strict";

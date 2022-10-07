@@ -265,9 +265,17 @@
                     </a>
                 </li>
 
-                <li class="nav-small-cap">{{__('Admin & User')}}</li>
+                <li class="{{active_menu('admin-home')}}">
+                    <a class="waves-effect waves-dark" href="{{route('admin.home')}}" aria-expanded="false">
+                        <i class="mdi mdi-home"></i>
+                        <span class="hide-menu">{{__('POS')}}</span>
+                    </a>
+                </li>
+
+                <li class="nav-small-cap">{{__('Admin & People')}}</li>
                 @if(auth()->guard('admin')->user()->hasRole('Super Admin'))
-                    <li><a class="has-arrow waves-effect waves-dark" href="#!" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">{{__('Admin Manage')}}</span></a>
+                    <li><a class="has-arrow waves-effect waves-dark" href="#!" aria-expanded="false">
+                            <i class="mdi mdi-account-multiple"></i><span class="hide-menu">{{__('Admin Manage')}}</span></a>
                         <ul aria-expanded="false" class="collapse">
                             <li><a href="{{route('admin.all.user')}}">{{__('All Admin')}} </a></li>
                             <li><a href="{{route('admin.new.user')}}">{{__('Add New Admin')}}</a></li>
@@ -275,14 +283,30 @@
                         </ul>
                     </li>
                 @endif
-                @canany(['user-list','user-create'])
-                    <li> <a class="has-arrow waves-effect waves-dark" href="#!" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">{{__('User Manage')}}</span></a>
+
+                @canany(['customer-list','customer-create'])
+                    <li> <a class="has-arrow waves-effect waves-dark" href="#!" aria-expanded="false"><i class="mdi mdi-account-multiple-outline">
+                            </i><span class="hide-menu">{{__('Customer Manage')}}</span></a>
                         <ul aria-expanded="false" class="collapse">
-                            @can('user-list')
-                                <li><a href="{{route('admin.all.frontend.user')}}">{{__('All Users')}} </a></li>
+                            @can('customer-list')
+                                <li><a href="{{route('admin.customer')}}">{{__('All Customer')}} </a></li>
                             @endcan
-                            @can('user-create')
-                                <li><a href="{{route('admin.frontend.new.user')}}">{{__('Add New User')}}</a></li>
+                            @can('customer-create')
+                                <li><a href="{{route('admin.customer.new')}}">{{__('Add New Customer')}}</a></li>
+                            @endcan
+                        </ul>
+                    </li>
+                @endcanany
+
+                @canany(['supplier-list','supplier-create'])
+                    <li> <a class="has-arrow waves-effect waves-dark" href="#!" aria-expanded="false"><i class="mdi mdi-account-multiple-outline"></i>
+                            <span class="hide-menu">{{__('Supplier Manage')}}</span></a>
+                        <ul aria-expanded="false" class="collapse">
+                            @can('supplier-list')
+                                <li><a href="{{route('admin.supplier')}}">{{__('All Supplier')}} </a></li>
+                            @endcan
+                            @can('supplier-create')
+                                <li><a href="{{route('admin.supplier.new')}}">{{__('Add New Supplier')}}</a></li>
                             @endcan
                         </ul>
                     </li>
@@ -296,7 +320,23 @@
                     </ul>
                 </li>
 
-                <li class="nav-small-cap">{{__('Settings & Extras')}}</li>
+                <li class="nav-small-cap">{{__('Setting & Others')}}</li>
+
+
+                <li>
+                    <a class="has-arrow waves-effect waves-dark" href="#!" aria-expanded="false">
+                        <i class="mdi mdi-settings"></i>
+                        <span class="hide-menu">{{__('Misc Settings')}}</span>
+                    </a>
+
+                    <ul aria-expanded="false" class="collapse">
+                         <li><a href="{{route('admin.country')}}">{{__('Country Settings')}}</a></li>
+                    </ul>
+                </li>
+
+
+
+
                 <li>
                     <a class="has-arrow waves-effect waves-dark" href="#!" aria-expanded="false">
                         <i class="mdi mdi-settings"></i>

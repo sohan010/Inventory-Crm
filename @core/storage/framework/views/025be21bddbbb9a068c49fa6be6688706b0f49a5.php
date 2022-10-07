@@ -265,9 +265,17 @@
                     </a>
                 </li>
 
-                <li class="nav-small-cap"><?php echo e(__('Admin & User')); ?></li>
+                <li class="<?php echo e(active_menu('admin-home')); ?>">
+                    <a class="waves-effect waves-dark" href="<?php echo e(route('admin.home')); ?>" aria-expanded="false">
+                        <i class="mdi mdi-home"></i>
+                        <span class="hide-menu"><?php echo e(__('POS')); ?></span>
+                    </a>
+                </li>
+
+                <li class="nav-small-cap"><?php echo e(__('Admin & People')); ?></li>
                 <?php if(auth()->guard('admin')->user()->hasRole('Super Admin')): ?>
-                    <li><a class="has-arrow waves-effect waves-dark" href="#!" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu"><?php echo e(__('Admin Manage')); ?></span></a>
+                    <li><a class="has-arrow waves-effect waves-dark" href="#!" aria-expanded="false">
+                            <i class="mdi mdi-account-multiple"></i><span class="hide-menu"><?php echo e(__('Admin Manage')); ?></span></a>
                         <ul aria-expanded="false" class="collapse">
                             <li><a href="<?php echo e(route('admin.all.user')); ?>"><?php echo e(__('All Admin')); ?> </a></li>
                             <li><a href="<?php echo e(route('admin.new.user')); ?>"><?php echo e(__('Add New Admin')); ?></a></li>
@@ -275,14 +283,30 @@
                         </ul>
                     </li>
                 <?php endif; ?>
-                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['user-list','user-create'])): ?>
-                    <li> <a class="has-arrow waves-effect waves-dark" href="#!" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu"><?php echo e(__('User Manage')); ?></span></a>
+
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['customer-list','customer-create'])): ?>
+                    <li> <a class="has-arrow waves-effect waves-dark" href="#!" aria-expanded="false"><i class="mdi mdi-account-multiple-outline">
+                            </i><span class="hide-menu"><?php echo e(__('Customer Manage')); ?></span></a>
                         <ul aria-expanded="false" class="collapse">
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('user-list')): ?>
-                                <li><a href="<?php echo e(route('admin.all.frontend.user')); ?>"><?php echo e(__('All Users')); ?> </a></li>
+                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('customer-list')): ?>
+                                <li><a href="<?php echo e(route('admin.customer')); ?>"><?php echo e(__('All Customer')); ?> </a></li>
                             <?php endif; ?>
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('user-create')): ?>
-                                <li><a href="<?php echo e(route('admin.frontend.new.user')); ?>"><?php echo e(__('Add New User')); ?></a></li>
+                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('customer-create')): ?>
+                                <li><a href="<?php echo e(route('admin.customer.new')); ?>"><?php echo e(__('Add New Customer')); ?></a></li>
+                            <?php endif; ?>
+                        </ul>
+                    </li>
+                <?php endif; ?>
+
+                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['supplier-list','supplier-create'])): ?>
+                    <li> <a class="has-arrow waves-effect waves-dark" href="#!" aria-expanded="false"><i class="mdi mdi-account-multiple-outline"></i>
+                            <span class="hide-menu"><?php echo e(__('Supplier Manage')); ?></span></a>
+                        <ul aria-expanded="false" class="collapse">
+                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('supplier-list')): ?>
+                                <li><a href="<?php echo e(route('admin.supplier')); ?>"><?php echo e(__('All Supplier')); ?> </a></li>
+                            <?php endif; ?>
+                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('supplier-create')): ?>
+                                <li><a href="<?php echo e(route('admin.supplier.new')); ?>"><?php echo e(__('Add New Supplier')); ?></a></li>
                             <?php endif; ?>
                         </ul>
                     </li>
@@ -296,7 +320,23 @@
                     </ul>
                 </li>
 
-                <li class="nav-small-cap"><?php echo e(__('Settings & Extras')); ?></li>
+                <li class="nav-small-cap"><?php echo e(__('Setting & Others')); ?></li>
+
+
+                <li>
+                    <a class="has-arrow waves-effect waves-dark" href="#!" aria-expanded="false">
+                        <i class="mdi mdi-settings"></i>
+                        <span class="hide-menu"><?php echo e(__('Misc Settings')); ?></span>
+                    </a>
+
+                    <ul aria-expanded="false" class="collapse">
+                         <li><a href="<?php echo e(route('admin.country')); ?>"><?php echo e(__('Country Settings')); ?></a></li>
+                    </ul>
+                </li>
+
+
+
+
                 <li>
                     <a class="has-arrow waves-effect waves-dark" href="#!" aria-expanded="false">
                         <i class="mdi mdi-settings"></i>

@@ -259,31 +259,23 @@
 
                 <ul class="navbar-nav my-lg-0">
 
-                    <li class="nav-item hidden-sm-down search-box"> <a class="nav-link hidden-sm-down text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>
-                        <form class="app-search">
-                            <input type="text" class="form-control" placeholder="Search & enter"> <a class="srh-btn"><i class="ti-close"></i></a> </form>
-                    </li>
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="flag-icon flag-icon-us"></i></a>
-                        <div class="dropdown-menu dropdown-menu-right scale-up"> <a class="dropdown-item" href="index.html#"><i class="flag-icon flag-icon-in"></i> India</a> <a class="dropdown-item" href="index.html#"><i class="flag-icon flag-icon-fr"></i> French</a> <a class="dropdown-item" href="index.html#"><i class="flag-icon flag-icon-cn"></i> China</a> <a class="dropdown-item" href="index.html#"><i class="flag-icon flag-icon-de"></i> Dutch</a> </div>
-                    </li>
-
-
                     <?php
                         $profile_img = get_attachment_image_by_id(auth()->user()->image,null,true);
                     ?>
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../assets/images/users/1.jpg" alt="user" class="profile-pic" /></a>
+                        <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            <img src="<?php echo e($profile_img['img_url']); ?>" alt="user" class="profile-pic" />
+                        </a>
                         <div class="dropdown-menu dropdown-menu-right scale-up">
                             <ul class="dropdown-user">
                                 <li>
                                     <div class="dw-user-box">
                                         <div class="u-img">
-                                            <?php if(!empty($profile_img)): ?>
-                                            <img src="<?php echo e($profile_img['img_url']); ?>" alt="user">
-                                            <?php endif; ?>
+
+                                            <img src="<?php echo e($profile_img['img_url']); ?>" alt="ok">
+
                                         </div>
                                         <div class="u-text">
                                             <h4><?php echo e(auth()->user()->name); ?></h4>
@@ -310,12 +302,12 @@
 
         <div class="row page-titles">
             <div class="col-md-5 align-self-center">
-                <h3 class="text-themecolor">Dashboard</h3>
+                <h3 class="text-themecolor"><?php echo $__env->yieldContent('page-title'); ?></h3>
             </div>
             <div class="col-md-7 align-self-center">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                    <li class="breadcrumb-item active">Dashboard</li>
+                    <li class="breadcrumb-item"><a href="<?php echo e(route('admin.home')); ?>"><?php echo e(__('Home')); ?></a></li>
+                    <li class="breadcrumb-item active"><?php echo $__env->yieldContent('page-title'); ?></li>
                 </ol>
             </div>
         </div>
@@ -369,6 +361,12 @@
             }
         });
     });
+
+    //for flash msg
+    setTimeout(function(){
+        $('.alert-success').slideUp();
+        $('.alert-danger').slideUp();
+    },3000)
 </script>
 
 

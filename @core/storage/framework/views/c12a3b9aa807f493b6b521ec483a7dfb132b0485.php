@@ -3,12 +3,16 @@
 
 <?php $__env->stopSection(); ?>
 
+<?php $__env->startSection('page-title'); ?>
+    <?php echo e(__('Dashboard')); ?>
+
+<?php $__env->stopSection(); ?>
+
 <?php $__env->startSection('content'); ?>
 <?php
     $statistics = [
         ['title' => 'Total Admin','value' => $total_admin, 'icon' => 'user'],
         ['title' => 'Total User','value' => $total_user, 'icon' => 'user'],
-        ['title' => 'Total Testimonial','value' => $total_testimonial, 'icon' => 'control-forward'],
         ['title' => 'Total Causes','value' => $total_causes, 'icon' => 'agenda'],
     ];
 ?>

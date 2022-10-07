@@ -2,14 +2,23 @@
 @section('site-title')
     {{__('Cache Settings')}}
 @endsection
+
+@section('page-title')
+    {{__('Cache Settings')}}
+@endsection
+
 @section('content')
     <div class="col-lg-12 col-ml-12 padding-bottom-30">
         <div class="row">
             <div class="col-12 mt-5">
-                @include('backend.partials.message')
+                <x-msg.success/>
+                <x-msg.error/>
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-header">
                         <h4 class="header-title">{{__("Cache Settings")}}</h4>
+                    </div>
+                    <div class="card-body">
+
                         <form action="{{route('admin.general.cache.settings')}}" method="POST" id="cache_settings_form" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="cache_type" id="cache_type" class="form-control">

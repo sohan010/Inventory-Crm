@@ -3,22 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Admin;
-use App\Brand;
 use App\Cause;
 use App\CauseLogs;
-use App\EventAttendance;
 use App\Events;
-use App\Faq;
-use App\Jobs;
 use App\Language;
 use App\MediaUpload;
-use App\Blog;
-use App\ContactInfoItem;
-use App\Counterup;
-use App\SocialIcons;
-use App\TeamMember;
 use App\Testimonial;
-use App\DonationWithdraw;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -93,7 +83,6 @@ class AdminDashboardController extends Controller
     {
         $total_admin = Admin::count();
         $total_user = User::count();
-        $total_testimonial = Testimonial::count();
         $total_causes = Cause::count();
 
 
@@ -103,7 +92,6 @@ class AdminDashboardController extends Controller
         return view('backend.admin-home')->with([
             'total_admin' => $total_admin,
             'total_user' => $total_user,
-            'total_testimonial' => $total_testimonial,
             'total_causes' => $total_causes,
             'causes_recent' => $causes_recent,
         ]);
@@ -297,7 +285,6 @@ class AdminDashboardController extends Controller
         }
 
         return redirect()->back()->with(['msg' => __('Company Settings Updated'), 'type' => 'success']);
-
     }
 
 }

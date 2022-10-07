@@ -1,21 +1,32 @@
 @extends('backend.admin-master')
+
 @section('site-title')
     {{__('Edit Role')}}
 @endsection
+
+@section('page-title')
+    {{__('Edit Role')}}
+@endsection
+
+
 @section('content')
-    <div class="col-lg-12 col-ml-12 padding-bottom-30">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-12 mt-5">
+            <div class="col-12">
+                <x-msg.error/>
+                <x-msg.success/>
                 <div class="card">
-                    <div class="card-body">
-                        <div class="header-wrap d-flex justify-content-between">
-                            <h4 class="header-title">{{__('Edit Role')}}</h4>
-                            <div class="btn-wrapper">
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between">
+                            <div class="left">
+                                <h4 class="header-title">{{__('Edit Role')}}</h4>
+                            </div>
+                            <div class="right">
                                 <a href="{{route('admin.all.admin.role')}}" class="btn btn-info">{{__('All Roles')}}</a>
                             </div>
                         </div>
-                        <x-msg.error/>
-                        <x-msg.success/>
+                    </div>
+                    <div class="card-body">
                         <form action="{{route('admin.user.role.update')}}" method="post" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="id" value="{{$role->id}}">

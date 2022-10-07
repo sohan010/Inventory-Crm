@@ -8,31 +8,30 @@
     <title>{{__("Admin Login")}} - {{get_static_option('site_title')}}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="{{asset('assets/uploads/site-favicon.'.get_static_option('site_favicon'))}}" type="image/png">
-    <link rel="stylesheet" href="{{asset('assets/common/css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/common/css/themify-icons.css')}}">
-    <!-- others css -->
-    <link rel="stylesheet" href="{{asset('assets/backend/css/typography.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/backend/css/default-css.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/backend/css/styles.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/backend/css/responsive.css')}}">
+
+    <link href="{{asset('assets/backend/assets/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/backend/assets/plugins/morrisjs/morris.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/backend/css/style.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/backend/css/colors/blue.cs')}}s" id="theme" rel="stylesheet">
+
 </head>
 
 <body>
     @yield('content')
+    <script src="{{asset('assets/backend/assets/plugins/jquery/jquery.min.js')}}"></script>
+    <script src="{{asset('assets/backend/assets/plugins/bootstrap/js/popper.min.js')}}"></script>
+    <script src="{{asset('assets/backend/assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('assets/backend/js/jquery.slimscroll.js')}}"></script>
+    <script src="{{asset('assets/backend/js/waves.js')}}"></script>
+    <script src="{{asset('assets/backend/js/sidebarmenu.js')}}"></script>
+    <script src="{{asset('assets/backend/assets/plugins/sticky-kit-master/dist/sticky-kit.min.js')}}"></script>
+    <script src="{{asset('assets/backend/js/custom.min.js')}}"></script>
+    <script src="{{asset('assets/backend/assets/plugins/sparkline/jquery.sparkline.min.js')}}"></script>
 
-    <!-- jquery latest version -->
-    <script src="{{asset('assets/common/js/jquery-3.6.0.min.js')}}"></script>
-    <script src="{{asset('assets/common/js/jquery-migrate-3.3.2.min.js')}}"></script>
-    <!-- bootstrap 4 js -->
-    <script src="{{asset('assets/common/js/popper.min.js')}}"></script>
-    <script src="{{asset('assets/common/js/bootstrap.min.js')}}"></script>
-    <script src="{{asset('assets/backend/js/metisMenu.min.js')}}"></script>
-    <script src="{{asset('assets/backend/js/jquery.slimscroll.min.js')}}"></script>
-    <script src="{{asset('assets/backend/js/jquery.slicknav.min.js')}}"></script>
-
-    <!-- others plugins -->
-    <script src="{{asset('assets/backend/js/plugins.js')}}"></script>
-    <script src="{{asset('assets/backend/js/scripts.js')}}"></script>
+    <script src="{{asset('assets/backend/assets/plugins/raphael/raphael-min.js')}}"></script>
+    <script src="{{asset('assets/backend/assets/plugins/morrisjs/morris.min.js')}}"></script>
+    <script src="{{asset('assets/backend/js/dashboard1.js')}}"></script>
+    <script src="{{asset('assets/backend/assets/plugins/styleswitcher/jQuery.style.switcher.js')}}"></script>
     @yield('scripts')
 </body>
 </html>

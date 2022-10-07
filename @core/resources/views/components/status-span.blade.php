@@ -1,5 +1,5 @@
 @if($status === 'draft')
-    <span class="alert alert-primary" >{{__('Draft')}}</span>
+    <span class="alert alert-warning px-2 py-1" >{{__('Draft')}}</span>
 @elseif($status === 'archive')
     <span class="alert alert-warning" >{{__('Archive')}}</span>
 @elseif($status === 'banned')
@@ -13,7 +13,7 @@
 @elseif($status === 'in_progress')
     <span class="alert alert-info" >{{__('In Progress')}}</span>
 @elseif($status === 'publish')
-    <span class="alert alert-success" >{{__('Publish')}}</span>
+    <span class="alert alert-primary px-2 py-1" >{{__('Published')}}</span>
 @elseif($status === 'approved')
     <span class="alert alert-success" >{{__('Approved')}}</span>
 @elseif($status === 'confirm')

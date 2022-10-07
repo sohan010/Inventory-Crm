@@ -5,14 +5,23 @@
 @section('style')
     <x-media.css/>
 @endsection
+
+@section('page-title')
+    {{__('Site Identity')}}
+@endsection
+
 @section('content')
     <div class="col-lg-12 col-ml-12 padding-bottom-30">
         <div class="row">
             <div class="col-12 mt-5">
-                @include('backend.partials.message')
+                <x-msg.success/>
+                <x-msg.error/>
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-header">
                         <h4 class="header-title">{{__("Site Identity Settings")}}</h4>
+                    </div>
+                    <div class="card-body">
+
                         <form action="{{route('admin.general.site.identity')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">

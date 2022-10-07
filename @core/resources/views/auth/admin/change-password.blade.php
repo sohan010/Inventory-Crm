@@ -2,22 +2,21 @@
 @section('site-title')
     {{__('Change Password')}}
 @endsection
+@section('page-title')
+    {{__('Change Password')}}
+@endsection
 @section('content')
     <div class="main-content-inner margin-top-30">
         <div class="row">
             <div class="col-lg-12">
-                @include('backend.partials.message')
+                <x-msg.success/>
+                <x-msg.error/>
                 <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">{{__('Change Password')}}</h4>
+                    </div>
                     <div class="card-body">
-                        @if($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach($errors->all() as $error)
-                                        <li>{{$error}}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
+
                         <form action="{{route('admin.password.change')}}" method="POST">
                             @csrf
                             <div class="form-group">
@@ -35,11 +34,15 @@
                                 <input type="password" class="form-control" id="password_confirmation"
                                        name="password_confirmation" placeholder="{{__('Confirm Password')}}">
                             </div>
-                            <button type="submit" class="btn btn-primary">{{__('Save changes')}}</button>
+                            <button id="update" type="submit" class="btn btn-primary">{{__('Save changes')}}</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <x-btn.update/>
 @endsection

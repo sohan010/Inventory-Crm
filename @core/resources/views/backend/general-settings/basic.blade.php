@@ -1,20 +1,33 @@
 @extends('backend.admin-master')
+
 @section('style')
     <link rel="stylesheet" href="{{asset('assets/backend/css/colorpicker.css')}}">
     <link rel="stylesheet" href="{{asset('assets/backend/css/dropzone.css')}}">
     <x-media.css/>
 @endsection
+
 @section('site-title')
     {{__('Basic Settings')}}
 @endsection
+
+@section('page-title')
+    {{__('Basic Settings')}}
+@endsection
+
 @section('content')
     <div class="col-lg-12 col-ml-12 padding-bottom-30">
         <div class="row">
             <div class="col-12 mt-5">
-                @include('backend.partials.message')
+              <x-msg.success/>
+                <x-msg.error/>
                 <div class="card">
+                    <div class="card-header">
+                        <div class="d-flex">
+                            <h4 class="header-title">{{__("Basic Settings")}}</h4>
+                        </div>
+                    </div>
                     <div class="card-body">
-                        <h4 class="header-title">{{__("Basic Settings")}}</h4>
+
                         <form action="{{route('admin.general.basic.settings')}}" method="POST" enctype="multipart/form-data">
                             @csrf
 

@@ -2,6 +2,11 @@
 @section('site-title')
     {{__('Language Settings')}}
 @endsection
+
+@section('page-title')
+    {{__('Language Settings')}}
+@endsection
+
 @section('content')
     <div class="col-lg-12 col-ml-12 padding-bottom-30">
         <div class="row">
@@ -12,8 +17,11 @@
             </div>
             <div class="col-lg-6 mt-5">
                 <div class="card">
-                    <div class="card-body table-responsive">
+                    <div class="card-header">
                         <h4 class="header-title">{{__('All Languages')}}</h4>
+                    </div>
+                    <div class="card-body table-responsive">
+
                         <table class="table table-default">
                             <thead>
                             <th>{{__('ID')}}</th>
@@ -37,7 +45,7 @@
                                     <td>
                                         @if($data->default == 1)
                                             <a href="javascript:void(0)"
-                                               class="btn btn-lg btn-success btn-sm mb-3 mr-1">{{__("Default")}}</a>
+                                               class="btn btn-lg btn-info btn-sm mb-3 mr-1">{{__("Default")}}</a>
                                         @else
                                             @can('language-edit')
                                                 <x-change-default-lang :url="route('admin.languages.default',$data->id)"/>
@@ -53,18 +61,18 @@
                                             @can('language-edit')
                                         <a href="{{route('admin.languages.words.backend',$data->slug)}}"
                                            title="{{__('Admin Panel Words')}}"
-                                           class="btn btn-secondary btn-xs mb-3 mr-1 text-white" >
+                                           class="btn btn-outline-secondary btn-xs mb-3 mr-1 " >
                                             <i class="ti-pencil"></i> {{__('Admin Words')}}
                                         </a>
                                         <a href="{{route('admin.languages.words.frontend',$data->slug)}}"
-                                           title="{{__('Frontend Words')}}" class="btn btn-info btn-xs mb-3 mr-1 text-white"
+                                           title="{{__('Frontend Words')}}" class="btn btn-outline-info btn-xs mb-3 mr-1"
                                            >
                                             <i class="ti-pencil"></i> {{__('Frontend Words')}}
                                         </a>
                                         <a href="#"
                                            data-toggle="modal"
                                            data-target="#language_item_edit_modal"
-                                           class="btn btn-primary btn-xs mb-3 mr-1 lang_edit_btn"
+                                           class="btn btn-outline-primary btn-xs mb-3 mr-1 lang_edit_btn"
                                            data-id="{{$data->id}}"
                                            data-name="{{$data->name}}"
                                            data-slug="{{$data->slug}}"
@@ -85,8 +93,11 @@
             @can('language-create')
             <div class="col-lg-6 mt-5">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-header">
                         <h4 class="header-title">{{__('Add New Language')}}</h4>
+                    </div>
+                    <div class="card-body">
+
                         <form action="{{route('admin.languages.new')}}" method="post" enctype="multipart/form-data" class="new_language_form">
                             @csrf
                             <div class="form-group">

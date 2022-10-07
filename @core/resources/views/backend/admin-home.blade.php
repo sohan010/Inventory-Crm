@@ -3,12 +3,15 @@
     {{__('Dashboard')}}
 @endsection
 
+@section('page-title')
+    {{__('Dashboard')}}
+@endsection
+
 @section('content')
 @php
     $statistics = [
         ['title' => 'Total Admin','value' => $total_admin, 'icon' => 'user'],
         ['title' => 'Total User','value' => $total_user, 'icon' => 'user'],
-        ['title' => 'Total Testimonial','value' => $total_testimonial, 'icon' => 'control-forward'],
         ['title' => 'Total Causes','value' => $total_causes, 'icon' => 'agenda'],
     ];
 @endphp
