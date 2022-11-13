@@ -83,7 +83,6 @@ class AdminDashboardController extends Controller
     {
         $total_admin = Admin::count();
         $total_user = User::count();
-        $total_causes = Cause::count();
 
 
         //recent 5 cause and event attendance
@@ -92,7 +91,6 @@ class AdminDashboardController extends Controller
         return view('backend.admin-home')->with([
             'total_admin' => $total_admin,
             'total_user' => $total_user,
-            'total_causes' => $total_causes,
             'causes_recent' => $causes_recent,
         ]);
     }

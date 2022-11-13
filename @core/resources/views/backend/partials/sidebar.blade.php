@@ -313,10 +313,16 @@
                 @endcanany
 
                 <li class="nav-small-cap">{{__('Main Contents')}}</li>
-                <li> <a class="has-arrow waves-effect waves-dark" href="index.html#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Forms</span></a>
+                <li> <a class="has-arrow waves-effect waves-dark" href="index.html#" aria-expanded="false"><i class="mdi mdi-database"></i>
+                        <span class="hide-menu">{{__('Products')}}</span></a>
                     <ul aria-expanded="false" class="collapse">
-                        <li><a href="form-basic.html">Basic Forms</a></li>
-                        <li><a href="form-layout.html">Form Layouts</a></li>
+                        <li><a href="form-layout.html">{{__('All Products')}}</a></li>
+                        <li><a href="form-layout.html">{{__('Add Product')}}</a></li>
+                        <li><a href="form-layout.html">{{__('Adjustments')}}</a></li>
+                        <li><a href="{{route('admin.product.category')}}">{{__('Category')}}</a></li>
+                        <li><a href="{{route('admin.product.subcategory')}}">{{__('Subcategory')}}</a></li>
+                        <li><a href="{{route('admin.product.brand')}}">{{__('Brand')}}</a></li>
+                        <li><a href="form-basic.html">{{__('Stock')}}</a></li>
                     </ul>
                 </li>
 

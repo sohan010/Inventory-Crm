@@ -16,6 +16,8 @@ Route::get('/','Auth\LoginController@index')->name('index');
 
 
 Route::prefix('admin-home')->middleware(['setlang:backend','adminglobalVariable'])->group(function () {
+    // Product Routes
+    require_once __DIR__ . '/product.php';
 
     /*----------------------------------------------------------------------------------------------------------------------------
     | MEDIA UPLOAD ROUTE

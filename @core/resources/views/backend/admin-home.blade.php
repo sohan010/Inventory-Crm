@@ -12,7 +12,6 @@
     $statistics = [
         ['title' => 'Total Admin','value' => $total_admin, 'icon' => 'user'],
         ['title' => 'Total User','value' => $total_user, 'icon' => 'user'],
-        ['title' => 'Total Causes','value' => $total_causes, 'icon' => 'agenda'],
     ];
 @endphp
 

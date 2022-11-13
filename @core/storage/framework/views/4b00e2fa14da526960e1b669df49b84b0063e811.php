@@ -35,6 +35,7 @@
      <link rel="stylesheet" href="<?php echo e(asset('assets/backend/xgenious/css/flatpickr.min.css')); ?>">
      <link rel="stylesheet" href="<?php echo e(asset('assets/common/css/font-awesome.min.css')); ?>">
      <link rel="stylesheet" href="<?php echo e(asset('assets/common/css/themify-icons.css')); ?>">
+     <link rel="stylesheet" href="<?php echo e(asset('assets/common/css/toastr.css')); ?>">
     <?php echo $__env->yieldContent('style'); ?>
      <link rel="stylesheet" href="<?php echo e(asset('assets/backend/xgenious/css/custom-style.css')); ?>">
     
@@ -338,7 +339,7 @@
 
 
 <script src="<?php echo e(asset('assets/backend/xgenious/js/custom.min.js')); ?>"></script>
-<script src="<?php echo e(asset('assets/backend/xgenious/js/toastr.min.js')); ?>"></script>
+<script src="<?php echo e(asset('assets/common/js/toastr.min.js')); ?>"></script>
 <script src="<?php echo e(asset('assets/backend/xgenious/js/sweetalert2.js')); ?>"></script>
 <script src="<?php echo e(asset('assets/backend/xgenious/js/flatpickr.js')); ?>"></script>
 
@@ -367,6 +368,8 @@
         $('.alert-success').slideUp();
         $('.alert-danger').slideUp();
     },3000)
+
+
 </script>
 
 

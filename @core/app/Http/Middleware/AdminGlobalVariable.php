@@ -13,8 +13,6 @@ class AdminGlobalVariable
 
     public function handle(Request $request, Closure $next)
     {
-       
-        $pending_cases_count = Cause::where('status','pending')->count();
 
         $lang = !empty(session()->get('lang')) ? session()->get('lang') : Language::where('default',1)->first()->slug;
         $all_languages = Language::all();
@@ -27,7 +25,6 @@ class AdminGlobalVariable
         $data = [
             'lang' => $lang,
             'all_languages' => $all_languages,
-            'pending_cases_count' => $pending_cases_count,
             'home_page_variant_number' => $home_page_variant_number,
             'admin_default_lang' => $admin_default_lang,
 

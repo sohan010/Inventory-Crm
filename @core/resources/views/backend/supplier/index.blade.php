@@ -65,7 +65,6 @@
                                         <td>{{$data->email}}</td>
                                         <td>{{$data->country?->name}}</td>
                                         <td>{{ \App\Enums\SupplierEnum::getText($data->supplier_type) }}</td>
-
                                         <td>
 
                                             @can('supplier-edit')
@@ -95,9 +94,9 @@
 @endsection
 
 @section('script')
+    <x-bulk-action-js url="{{route('admin.supplier.bulk.action')}}"/>
     <x-admin-press-datatable.js/>
     <x-media.js/>
-    <x-bulk-action-js url="{{route('admin.supplier.bulk.action')}}"/>
-        <x-btn.submit/>
-        <x-btn.update/>
+    <x-btn.submit/>
+    <x-btn.update/>
 @endsection
