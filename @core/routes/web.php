@@ -113,6 +113,28 @@ Route::prefix('admin-home')->middleware(['setlang:backend','adminglobalVariable'
             Route::post('/bulk-action', 'bulk_action')->name('admin.country.bulk.action');
         });
 
+        /*----------------------------------------------------------------------------------------------------------------------------
+        |COLOR MANAGE
+        |----------------------------------------------------------------------------------------------------------------------------*/
+        Route::controller(Admin\Others\ColorController::class)->prefix('color')->group(function () {
+            Route::get('/all', 'index')->name('admin.color');
+            Route::post('/all', 'store');
+            Route::post('/update', 'update')->name('admin.color.update');
+            Route::post('/delete/{id}', 'delete')->name('admin.color.delete');
+            Route::post('/bulk-action', 'bulk_action')->name('admin.color.bulk.action');
+        });
+
+        /*----------------------------------------------------------------------------------------------------------------------------
+        |SIZE MANAGE
+        |----------------------------------------------------------------------------------------------------------------------------*/
+            Route::controller(Admin\Others\SizeController::class)->prefix('size')->group(function () {
+                Route::get('/all', 'index')->name('admin.size');
+                Route::post('/all', 'store');
+                Route::post('/update', 'update')->name('admin.size.update');
+                Route::post('/delete/{id}', 'delete')->name('admin.size.delete');
+                Route::post('/bulk-action', 'bulk_action')->name('admin.size.bulk.action');
+            });
+
 
         /*----------------------------------------------------------------------------------------------------------------------------
         | GENERAL SETTINGS MANAGE

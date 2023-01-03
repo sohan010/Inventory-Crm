@@ -3,9 +3,6 @@
 namespace App\Actions;
 
 use App\Supplier;
-use App\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
 class SupplierAction
 {
