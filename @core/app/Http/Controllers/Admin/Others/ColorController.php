@@ -17,47 +17,52 @@ class ColorController extends Controller
 
     public function index(){
 
-        $all_colors = Color::select('id','name','status','color_code')->orderBy('id','desc')->get();
+        $all_colors = Color::select('id','name','status','color_code','created_at')->orderBy('id','desc')->get();
         return view(self::BASE_PATH.'color-settings')->with([
             'all_colors' => $all_colors
         ]);
     }
 
     public function store(Request $request){
-        $this->validate($request,[
+       $validated_data =  $this->validate($request,[
             'name' => 'required|string',
+            'color_code' => 'required|string',
             'status' => 'required|string'
         ]);
 
-        $country = new ProductCategory();
-        $country->name = $request->name;
-        $country->status = $request->status;
+        $country = new Color();
+        $country->name =  $validated_data['name'];
+        $country->color_code =  $validated_data['color_code'];
+        $country->status =  $validated_data['status'];
         $country->save();
 
         return redirect()->back()->with(FlashMsg::item_new());
     }
 
     public function update(Request $request){
-        $this->validate($request,[
+
+        $validated_data = $this->validate($request,[
             'name' => 'required|string',
-            'status' => 'required|string'
+            'status' => 'required|string',
+            'color_code' => 'required|string'
         ]);
 
-        $country = ProductCategory::find($request->id);
-        $country->name = $request->name;
-        $country->status = $request->status;
+        $country = Color::find($request->id);
+        $country->name =  $validated_data['name'];
+        $country->color_code =  $validated_data['color_code'];
+        $country->status =  $validated_data['status'];
         $country->save();
 
         return redirect()->back()->with(FlashMsg::item_update());
     }
 
     public function delete(Request $request,$id){
-        ProductCategory::find($id)->delete();
+        Color::find($id)->delete();
         return redirect()->back()->with(FlashMsg::item_delete());
     }
 
     public function bulk_action(Request $request){
-        ProductCategory::whereIn('id',$request->ids)->delete();
+        Color::whereIn('id',$request->ids)->delete();
         return response()->json(['status' => 'ok']);
     }
 

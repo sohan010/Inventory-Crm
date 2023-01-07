@@ -135,6 +135,17 @@ Route::prefix('admin-home')->middleware(['setlang:backend','adminglobalVariable'
                 Route::post('/bulk-action', 'bulk_action')->name('admin.size.bulk.action');
             });
 
+        /*----------------------------------------------------------------------------------------------------------------------------
+        |UNIT MANAGE
+        |----------------------------------------------------------------------------------------------------------------------------*/
+            Route::controller(Admin\Others\UnitController::class)->prefix('unit')->group(function () {
+                Route::get('/all', 'index')->name('admin.unit');
+                Route::post('/all', 'store');
+                Route::post('/update', 'update')->name('admin.unit.update');
+                Route::post('/delete/{id}', 'delete')->name('admin.unit.delete');
+                Route::post('/bulk-action', 'bulk_action')->name('admin.unit.bulk.action');
+            });
+
 
         /*----------------------------------------------------------------------------------------------------------------------------
         | GENERAL SETTINGS MANAGE
@@ -143,6 +154,9 @@ Route::prefix('admin-home')->middleware(['setlang:backend','adminglobalVariable'
             //general settings
             Route::get('/site-identity', 'site_identity')->name('admin.general.site.identity');
             Route::post('/site-identity', 'update_site_identity');
+
+            Route::get('/color-settings', 'color_settings')->name('admin.general.color.settings');
+            Route::post('/color-settings', 'update_color_settings');
 
             Route::get('/basic-settings', 'basic_settings')->name('admin.general.basic.settings');
             Route::post('/basic-settings', 'update_basic_settings');

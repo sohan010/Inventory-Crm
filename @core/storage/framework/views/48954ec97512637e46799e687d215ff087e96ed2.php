@@ -28,4 +28,8 @@
     <span class="p-2 badge badge-danger" ><?php echo e(__('Reject')); ?></span>
 <?php elseif($status === 'pending'): ?>
     <span class="p-2 badge badge-warning" ><?php echo e(__('Pending')); ?></span>
+<?php elseif($status == 1): ?>
+    <span class="p-2 badge badge-info" ><?php echo e(__('Active')); ?></span>
+<?php elseif($status == 0): ?>
+    <span class="p-2 badge badge-danger" ><?php echo e(__('Inactive')); ?></span>
 <?php endif; ?><?php /**PATH H:\xampp\htdocs\inventory-crm\@core\resources\views/components/status-span.blade.php ENDPATH**/ ?>

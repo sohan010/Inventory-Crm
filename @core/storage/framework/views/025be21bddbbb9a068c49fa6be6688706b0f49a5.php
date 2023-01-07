@@ -321,7 +321,7 @@
                         <li><a href="<?php echo e(route('admin.product.brand')); ?>"><?php echo e(__('Brand')); ?></a></li>
                         <li><a href="<?php echo e(route('admin.color')); ?>"><?php echo e(__('Color')); ?></a></li>
                         <li><a href="<?php echo e(route('admin.size')); ?>"><?php echo e(__('Size')); ?></a></li>
-                        <li><a href="<?php echo e(route('admin.product.brand')); ?>"><?php echo e(__('Unit')); ?></a></li>
+                        <li><a href="<?php echo e(route('admin.unit')); ?>"><?php echo e(__('Unit')); ?></a></li>
                     </ul>
                 </li>
 
@@ -370,6 +370,7 @@
                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('general-settings-site-identity')): ?>
                                 <li><a href="<?php echo e(route('admin.general.site.identity')); ?>"><?php echo e(__('Site Identity')); ?></a></li>
                             <?php endif; ?>
+
 
                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('general-settings-basic-settings')): ?>
                                 <li><a href="<?php echo e(route('admin.general.basic.settings')); ?>"><?php echo e(__('Basic Settings')); ?></a></li>

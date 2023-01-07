@@ -321,7 +321,7 @@
                         <li><a href="{{route('admin.product.brand')}}">{{__('Brand')}}</a></li>
                         <li><a href="{{route('admin.color')}}">{{__('Color')}}</a></li>
                         <li><a href="{{route('admin.size')}}">{{__('Size')}}</a></li>
-                        <li><a href="{{route('admin.product.brand')}}">{{__('Unit')}}</a></li>
+                        <li><a href="{{route('admin.unit')}}">{{__('Unit')}}</a></li>
                     </ul>
                 </li>
 
@@ -370,6 +370,7 @@
                             @can('general-settings-site-identity')
                                 <li><a href="{{route('admin.general.site.identity')}}">{{__('Site Identity')}}</a></li>
                             @endcan
+
 
                             @can('general-settings-basic-settings')
                                 <li><a href="{{route('admin.general.basic.settings')}}">{{__('Basic Settings')}}</a></li>

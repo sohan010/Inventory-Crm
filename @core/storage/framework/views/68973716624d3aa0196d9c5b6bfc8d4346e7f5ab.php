@@ -6,31 +6,22 @@
                     <h5 class="modal-title"><?php echo e(__('New Subcategory Item')); ?></h5>
                     <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
                 </div>
-                <form action="<?php echo e(route('admin.product.subcategory')); ?>" method="post" enctype="multipart/form-data">
+                <form action="<?php echo e(route('admin.product.category')); ?>" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
                         <?php echo csrf_field(); ?>
-
-                        <div class="form-group mt-3">
-                            <label for="edit_status"><?php echo e(__('Category')); ?></label>
-                            <select name="product_category_id" class="form-control">
-                                <?php $__currentLoopData = $all_categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <option value="<?php echo e($category->id); ?>"><?php echo e($category->name); ?></option>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            </select>
-                        </div>
-
-                        <div class="form-group ">
-                       <label for="edit_status"><?php echo e(__('Status')); ?></label>
-                            <select name="status" class="form-control">
-                                <option value="publish"><?php echo e(__('Publish')); ?></option>
-                                <option value="draft"><?php echo e(__('Draft')); ?></option>
-                            </select>
-                        </div>
 
                         <label for="edit_name"><?php echo e(__('Name')); ?></label>
                         <div class="input-group">
                             <div class="input-group-addon"><i class="ti-user"></i></div>
                             <input type="text" class="form-control" name="name" placeholder="<?php echo e(__('Name')); ?>">
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label for="edit_status"><?php echo e(__('Status')); ?></label>
+                            <select name="status" class="form-control">
+                                <option value="publish"><?php echo e(__('Publish')); ?></option>
+                                <option value="draft"><?php echo e(__('Draft')); ?></option>
+                            </select>
                         </div>
 
                         <div class="modal-footer">

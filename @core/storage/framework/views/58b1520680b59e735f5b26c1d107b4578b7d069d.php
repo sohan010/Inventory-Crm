@@ -21,7 +21,13 @@
 <?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
 <?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
 <?php endif; ?>
-   <link href="<?php echo e(asset('assets/backend/assets/plugins/jquery-asColorPicker-master/css/asColorPicker.css')); ?>" rel="stylesheet">
+   <link rel="stylesheet" href="<?php echo e(asset('assets/backend/xgenious/css/colorpicker.css')); ?>">
+    <style>
+        .colorpicker{
+            z-index: 1051;
+            top: 30px !important;
+        }
+    </style>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
@@ -72,15 +78,6 @@
 
                     <div class="card-body">
 
-                        <div class="col-md-4 m-b-30">
-                            <div class="example">
-                                <h5 class="box-title">Simple mode</h5>
-                                <p class="text-muted m-b-20">just add class <code>.colorpicker</code> to create it.</p>
-                                <input type="text" class="colorpicker form-control" value="#7ab2fa" />
-                            </div>
-                        </div>
-
-
                         <div class="bulk-delete-wrapper">
                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('color-delete')): ?>
                                 <div class="select-box-wrap">
@@ -117,8 +114,9 @@
 <?php endif; ?>
                                 <th><?php echo e(__('ID')); ?></th>
                                 <th><?php echo e(__('Name')); ?></th>
-                                <th><?php echo e(__('Status')); ?></th>
+                                <th><?php echo e(__('Color')); ?></th>
                                 <th><?php echo e(__('Created Date')); ?></th>
+                                <th><?php echo e(__('Status')); ?></th>
                                 <th><?php echo e(__('Action')); ?></th>
                                 </thead>
                                 <tbody>
@@ -141,7 +139,16 @@
                                         <td><?php echo e($data->id); ?></td>
                                         <td><?php echo e($data->name); ?></td>
                                         <td>
-                                            <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
+                                            <?php if(in_array($data->name,['white','White'])): ?>
+                                              <div style="background-color: <?php echo e($data->color_code); ?>; color:#000;"> <?php echo e($data->color_code); ?> </div>
+                                            <?php else: ?>
+                                                <div style="background-color: <?php echo e($data->color_code); ?>; color:#fff;"> <?php echo e($data->color_code); ?> </div>
+                                            <?php endif; ?>
+                                        </td>
+
+                                        <td><?php echo e(date('d-m-Y',strtotime($data->created_at))); ?></td>
+
+                                        <td><?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
 <?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.status-span','data' => ['status' => $data->status]]); ?>
 <?php $component->withName('status-span'); ?>
 <?php if ($component->shouldRender()): ?>
@@ -152,9 +159,8 @@
 <?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
 <?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
 <?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
-<?php endif; ?>
-                                        </td>
-                                        <td><?php echo e(optional($data->created_at)->format('d-m-Y')); ?></td>
+<?php endif; ?></td>
+
                                         <td>
                                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('color-delete')): ?>
                                                 <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
@@ -178,6 +184,7 @@
                                                    data-id="<?php echo e($data->id); ?>"
                                                    data-action="<?php echo e(route('admin.color.update')); ?>"
                                                    data-name="<?php echo e($data->name); ?>"
+                                                   data-color_code="<?php echo e($data->color_code); ?>"
                                                    data-status="<?php echo e($data->status); ?>"
                                                 >
                                                     <i class="ti-pencil"></i>
@@ -196,8 +203,9 @@
  <?php $__env->stopSection(); ?>
 
  <?php $__env->startSection('script'); ?>
-     <?php echo $__env->make('backend.popup-modals.color.add', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-     <?php echo $__env->make('backend.popup-modals.color.edit', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
+
+    <script src="<?php echo e(asset('assets/backend/xgenious/js/colorpicker.js')); ?>"></script>
 
    <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
 <?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.admin-press-datatable.js','data' => []]); ?>
@@ -247,38 +255,51 @@
 <?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
 <?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
 <?php endif; ?>
-    <script src="<?php echo e(asset('assets/backend/assets/plugins/jquery-asColorPicker-master/dist/jquery-asColorPicker.min.js')); ?>"></script>
 
     <script>
-        // $("#color_code").asColorPicker({
-        //     mode: 'gradient'
-        // });
-        alert(55)
-        $(".colorpicker").asColorPicker();
-    </script>
+        $(document).ready(function () {
 
-    <script>
-            $(document).ready(function () {
+            $(document).on('click', '.color_edit_btn', function () {
+                var el = $(this);
+                var id = el.data('id');
+                var name = el.data('name');
+                var code = el.data('color_code');
+                var action = el.data('action');
 
-                $(document).on('click', '.color_edit_btn', function () {
-                    var el = $(this);
-                    var id = el.data('id');
-                    var name = el.data('name');
-                    var action = el.data('action');
-
-                    var form = $('#color_edit_modal_form');
-                    form.attr('action', action);
-                    form.find('#color_id').val(id);
-                    form.find('#edit_name').val(name);
-                    form.find('#edit_status option[value="' + el.data('status') + '"]').attr('selected', true);
-
-                });
-
-
+                var form = $('#color_edit_modal_form');
+                form.attr('action', action);
+                form.find('#color_id').val(id);
+                form.find('#edit_name').val(name);
+                form.find('#edit_color_code').val(code).css('background',code).css('color','#fff');
+                form.find('#edit_status option[value="' + el.data('status') + '"]').attr('selected', true);
 
             });
-    </script>
 
+            initColorPicker('#color_code');
+            initColorPicker('#edit_color_code');
+
+            function initColorPicker(selector){
+                $(selector).ColorPicker({
+                    color: '#852aff',
+                    onShow: function (colpkr) {
+                        $(colpkr).fadeIn(500);
+                        return false;
+                    },
+                    onHide: function (colpkr) {
+                        $(colpkr).fadeOut(500);
+                        return false;
+                    },
+                    onChange: function (hsb, hex, rgb) {
+                        $(selector).css('background-color', '#' + hex);
+                        $(selector).val('#' + hex);
+                    }
+                });
+            }
+
+        });
+    </script>
+    <?php echo $__env->make('backend.popup-modals.color.add', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <?php echo $__env->make('backend.popup-modals.color.edit', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('backend.admin-master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH H:\xampp\htdocs\inventory-crm\@core\resources\views/backend/pages/others/color-settings.blade.php ENDPATH**/ ?>

@@ -28,4 +28,8 @@
     <span class="p-2 badge badge-danger" >{{__('Reject')}}</span>
 @elseif($status === 'pending')
     <span class="p-2 badge badge-warning" >{{__('Pending')}}</span>
+@elseif($status == 1)
+    <span class="p-2 badge badge-info" >{{__('Active')}}</span>
+@elseif($status == 0)
+    <span class="p-2 badge badge-danger" >{{__('Inactive')}}</span>
 @endif

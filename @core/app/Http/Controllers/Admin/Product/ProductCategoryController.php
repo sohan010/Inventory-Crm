@@ -37,6 +37,7 @@ class ProductCategoryController extends Controller
     }
 
     public function update(Request $request){
+
         $this->validate($request,[
             'name' => 'required|string',
             'status' => 'required|string'
@@ -51,6 +52,15 @@ class ProductCategoryController extends Controller
     }
 
     public function delete(Request $request,$id){
+
+
+
+
+
+
+
+
+
         ProductCategory::find($id)->delete();
         return redirect()->back()->with(FlashMsg::item_delete());
     }

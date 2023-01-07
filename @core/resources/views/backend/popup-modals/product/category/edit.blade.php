@@ -14,27 +14,19 @@
 
                         <input type="hidden" name="id" id="product_category_id" value="">
 
-                        <div class="form-group mt-3">
-                            <label for="edit_status">{{__('Category')}}</label>
-                            <select name="product_category_id" class="form-control" id="edit_category_id">
-                                @foreach($all_categories as $category)
-                                   <option value="{{$category->id}}">{{$category->name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <div class="form-group ">
-                            <label for="edit_status">{{__('Status')}}</label>
-                            <select name="status" class="form-control" id="edit_status">
-                                <option value="publish">{{__('Publish')}}</option>
-                                <option value="draft">{{__('Draft')}}</option>
-                            </select>
-                        </div>
 
                         <label for="edit_name">{{__('Name')}}</label>
                         <div class="input-group">
                             <div class="input-group-addon"><i class="ti-user"></i></div>
                             <input type="text" class="form-control" id="edit_name" name="name" placeholder="{{__('Name')}}">
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label for="edit_status">{{__('Status')}}</label>
+                            <select name="status" class="form-control" id="edit_status">
+                                <option value="publish">{{__('Publish')}}</option>
+                                <option value="draft">{{__('Draft')}}</option>
+                            </select>
                         </div>
 
                     </div>

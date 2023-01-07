@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Admin\Product;
 use App\Product\Brand;
-use App\Product\PoductSubCategory;
-use App\Product\ProductCategory;
 use App\Helpers\FlashMsg;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -54,7 +52,7 @@ class ProductBrandController extends Controller
         return redirect()->back()->with(FlashMsg::item_update());
     }
 
-    public function delete(Request $request,$id){
+    public function delete($id){
         Brand::find($id)->delete();
         return redirect()->back()->with(FlashMsg::item_delete());
     }

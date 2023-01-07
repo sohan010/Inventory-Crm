@@ -69,6 +69,11 @@
                                         <td>
                                             {!! render_attachment_preview_for_admin($data->image) !!}
                                         </td>
+                                        @php
+                                            $testimonial_img = get_attachment_image_by_id($data->image,null,true);
+                                             $img_url = $testimonial_img['img_url']
+                                        @endphp
+
                                         <td>{{$data->name}}</td>
                                         <td>{{optional($data->created_at)->format('d-m-Y')}}</td>
                                         <td>
@@ -87,8 +92,9 @@
                                                    data-id="{{$data->id}}"
                                                    data-action="{{route('admin.product.brand.update')}}"
                                                    data-name="{{$data->name}}"
-                                                   data-brand="{{$data->product_brand_id}}"
                                                    data-status="{{$data->status}}"
+                                                   data-imageid="{{$data->image}}"
+                                                   data-image="{{$img_url}}"
                                                 >
                                                     <i class="ti-pencil"></i>
                                                 </a>
@@ -102,13 +108,15 @@
                     </div>
                 </div>
             </div>
-            <x-media.markup/>
+
     @endsection
 
  @section('script')
 
      @include('backend.popup-modals.product.brand.add')
      @include('backend.popup-modals.product.brand.edit')
+
+  <x-media.markup/>
 
    <x-admin-press-datatable.js/>
    <x-media.js/>
@@ -123,11 +131,20 @@
                     var name = el.data('name');
                     var action = el.data('action');
 
+                    var image = el.data('image');
+                    var imageid = el.data('imageid');
+
                     var form = $('#product_brand_edit_modal_form');
                     form.attr('action', action);
                     form.find('#product_brand_id').val(id);
                     form.find('#edit_name').val(name);
                     form.find('#edit_status option[value="' + el.data('status') + '"]').attr('selected', true);
+
+                    if (imageid != '') {
+                        form.find('.media-upload-btn-wrapper .img-wrap').html('<div class="attachment-preview"><div class="thumbnail"><div class="centered"><img class="avatar user-thumb" src="' + image + '" > </div></div></div>');
+                        form.find('.media-upload-btn-wrapper input').val(imageid);
+                        form.find('.media-upload-btn-wrapper .media_upload_form_btn').text('Change Image');
+                    }
 
                 });
             });

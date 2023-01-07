@@ -1,8 +1,6 @@
 @extends('backend.admin-master')
 @section('style')
-    <link rel="stylesheet" href="{{asset('assets/backend/css/colorpicker.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/backend/css/dropzone.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/backend/css/media-uploader.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/backend/xgenious/css/colorpicker.css')}}">
 @endsection
 @section('site-title')
     {{__('Color Settings')}}
@@ -64,8 +62,7 @@
  <x-media.markup/>
 @endsection
 @section('script')
-    <script src="{{asset('assets/backend/js/colorpicker.js')}}"></script>
-    <script src="{{asset('assets/backend/js/dropzone.js')}}"></script>
+    <script src="{{asset('assets/backend/xgenious/js/colorpicker.js')}}"></script>
    <x-media.js/>
     <script>
         (function($){

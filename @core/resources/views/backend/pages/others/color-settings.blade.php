@@ -10,7 +10,13 @@
 
 @section('style')
    <x-admin-press-datatable.css/>
-   <link href="{{asset('assets/backend/assets/plugins/jquery-asColorPicker-master/css/asColorPicker.css')}}" rel="stylesheet">
+   <link rel="stylesheet" href="{{asset('assets/backend/xgenious/css/colorpicker.css')}}">
+    <style>
+        .colorpicker{
+            z-index: 1051;
+            top: 30px !important;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -39,15 +45,6 @@
 
                     <div class="card-body">
 
-                        <div class="col-md-4 m-b-30">
-                            <div class="example">
-                                <h5 class="box-title">Simple mode</h5>
-                                <p class="text-muted m-b-20">just add class <code>.colorpicker</code> to create it.</p>
-                                <input type="text" class="colorpicker form-control" value="#7ab2fa" />
-                            </div>
-                        </div>
-
-
                         <div class="bulk-delete-wrapper">
                             @can('color-delete')
                                 <div class="select-box-wrap">
@@ -62,8 +59,9 @@
                                 <x-bulk-th/>
                                 <th>{{__('ID')}}</th>
                                 <th>{{__('Name')}}</th>
-                                <th>{{__('Status')}}</th>
+                                <th>{{__('Color')}}</th>
                                 <th>{{__('Created Date')}}</th>
+                                <th>{{__('Status')}}</th>
                                 <th>{{__('Action')}}</th>
                                 </thead>
                                 <tbody>
@@ -75,9 +73,17 @@
                                         <td>{{$data->id}}</td>
                                         <td>{{$data->name}}</td>
                                         <td>
-                                            <x-status-span :status="$data->status"/>
+                                            @if(in_array($data->name,['white','White']))
+                                              <div style="background-color: {{$data->color_code}}; color:#000;"> {{ $data->color_code }} </div>
+                                            @else
+                                                <div style="background-color: {{$data->color_code}}; color:#fff;"> {{ $data->color_code }} </div>
+                                            @endif
                                         </td>
-                                        <td>{{optional($data->created_at)->format('d-m-Y')}}</td>
+
+                                        <td>{{date('d-m-Y',strtotime($data->created_at))}}</td>
+
+                                        <td><x-status-span :status="$data->status"/></td>
+
                                         <td>
                                             @can('color-delete')
                                                 <x-delete-popover :url="route('admin.color.delete',$data->id)"/>
@@ -90,6 +96,7 @@
                                                    data-id="{{$data->id}}"
                                                    data-action="{{route('admin.color.update')}}"
                                                    data-name="{{$data->name}}"
+                                                   data-color_code="{{$data->color_code}}"
                                                    data-status="{{$data->status}}"
                                                 >
                                                     <i class="ti-pencil"></i>
@@ -108,42 +115,57 @@
  @endsection
 
  @section('script')
-     @include('backend.popup-modals.color.add')
-     @include('backend.popup-modals.color.edit')
+
+
+    <script src="{{asset('assets/backend/xgenious/js/colorpicker.js')}}"></script>
 
    <x-admin-press-datatable.js/>
    <x-btn.submit/>
    <x-btn.update/>
    <x-bulk-action-js :url="route('admin.color.bulk.action')"/>
-    <script src="{{asset('assets/backend/assets/plugins/jquery-asColorPicker-master/dist/jquery-asColorPicker.min.js')}}"></script>
 
     <script>
-        // $("#color_code").asColorPicker({
-        //     mode: 'gradient'
-        // });
-        $(".colorpicker").asColorPicker();
-    </script>
+        $(document).ready(function () {
 
-    <script>
-            $(document).ready(function () {
+            $(document).on('click', '.color_edit_btn', function () {
+                var el = $(this);
+                var id = el.data('id');
+                var name = el.data('name');
+                var code = el.data('color_code');
+                var action = el.data('action');
 
-                $(document).on('click', '.color_edit_btn', function () {
-                    var el = $(this);
-                    var id = el.data('id');
-                    var name = el.data('name');
-                    var action = el.data('action');
-
-                    var form = $('#color_edit_modal_form');
-                    form.attr('action', action);
-                    form.find('#color_id').val(id);
-                    form.find('#edit_name').val(name);
-                    form.find('#edit_status option[value="' + el.data('status') + '"]').attr('selected', true);
-
-                });
-
-
+                var form = $('#color_edit_modal_form');
+                form.attr('action', action);
+                form.find('#color_id').val(id);
+                form.find('#edit_name').val(name);
+                form.find('#edit_color_code').val(code).css('background',code).css('color','#fff');
+                form.find('#edit_status option[value="' + el.data('status') + '"]').attr('selected', true);
 
             });
-    </script>
 
+            initColorPicker('#color_code');
+            initColorPicker('#edit_color_code');
+
+            function initColorPicker(selector){
+                $(selector).ColorPicker({
+                    color: '#852aff',
+                    onShow: function (colpkr) {
+                        $(colpkr).fadeIn(500);
+                        return false;
+                    },
+                    onHide: function (colpkr) {
+                        $(colpkr).fadeOut(500);
+                        return false;
+                    },
+                    onChange: function (hsb, hex, rgb) {
+                        $(selector).css('background-color', '#' + hex);
+                        $(selector).val('#' + hex);
+                    }
+                });
+            }
+
+        });
+    </script>
+    @include('backend.popup-modals.color.add')
+    @include('backend.popup-modals.color.edit')
 @endsection

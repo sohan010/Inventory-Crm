@@ -147,6 +147,11 @@
                                             <?php echo render_attachment_preview_for_admin($data->image); ?>
 
                                         </td>
+                                        <?php
+                                            $testimonial_img = get_attachment_image_by_id($data->image,null,true);
+                                             $img_url = $testimonial_img['img_url']
+                                        ?>
+
                                         <td><?php echo e($data->name); ?></td>
                                         <td><?php echo e(optional($data->created_at)->format('d-m-Y')); ?></td>
                                         <td>
@@ -187,8 +192,9 @@
                                                    data-id="<?php echo e($data->id); ?>"
                                                    data-action="<?php echo e(route('admin.product.brand.update')); ?>"
                                                    data-name="<?php echo e($data->name); ?>"
-                                                   data-brand="<?php echo e($data->product_brand_id); ?>"
                                                    data-status="<?php echo e($data->status); ?>"
+                                                   data-imageid="<?php echo e($data->image); ?>"
+                                                   data-image="<?php echo e($img_url); ?>"
                                                 >
                                                     <i class="ti-pencil"></i>
                                                 </a>
@@ -202,7 +208,15 @@
                     </div>
                 </div>
             </div>
-            <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
+
+    <?php $__env->stopSection(); ?>
+
+ <?php $__env->startSection('script'); ?>
+
+     <?php echo $__env->make('backend.popup-modals.product.brand.add', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+     <?php echo $__env->make('backend.popup-modals.product.brand.edit', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
+  <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
 <?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.media.markup','data' => []]); ?>
 <?php $component->withName('media.markup'); ?>
 <?php if ($component->shouldRender()): ?>
@@ -214,12 +228,6 @@
 <?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
 <?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
 <?php endif; ?>
-    <?php $__env->stopSection(); ?>
-
- <?php $__env->startSection('script'); ?>
-
-     <?php echo $__env->make('backend.popup-modals.product.brand.add', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-     <?php echo $__env->make('backend.popup-modals.product.brand.edit', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
    <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
 <?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.admin-press-datatable.js','data' => []]); ?>
@@ -289,11 +297,20 @@
                     var name = el.data('name');
                     var action = el.data('action');
 
+                    var image = el.data('image');
+                    var imageid = el.data('imageid');
+
                     var form = $('#product_brand_edit_modal_form');
                     form.attr('action', action);
                     form.find('#product_brand_id').val(id);
                     form.find('#edit_name').val(name);
                     form.find('#edit_status option[value="' + el.data('status') + '"]').attr('selected', true);
+
+                    if (imageid != '') {
+                        form.find('.media-upload-btn-wrapper .img-wrap').html('<div class="attachment-preview"><div class="thumbnail"><div class="centered"><img class="avatar user-thumb" src="' + image + '" > </div></div></div>');
+                        form.find('.media-upload-btn-wrapper input').val(imageid);
+                        form.find('.media-upload-btn-wrapper .media_upload_form_btn').text('Change Image');
+                    }
 
                 });
             });

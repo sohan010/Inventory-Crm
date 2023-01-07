@@ -6,7 +6,7 @@
                     <h5 class="modal-title">{{__('Edit Brand Item')}}</h5>
                     <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
                 </div>
-                <form action="#" id="product_category_edit_modal_form" method="post"
+                <form action="#" id="product_brand_edit_modal_form" method="post"
                       enctype="multipart/form-data">
                     <div class="modal-body">
                         @csrf
