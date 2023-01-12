@@ -9609,3 +9609,7 @@ input[type=checkbox]:not(:disabled).tabbed:focus ~ .lever:after, input[type=chec
 #product_brand_item_edit_modal .modal-content{
     z-index: 800;
 }
+
+.product_add_card_body .form-group {
+    margin-bottom: 0 !important;
+}

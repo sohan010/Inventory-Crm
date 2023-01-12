@@ -311,11 +311,11 @@
                 @endcanany
 
                 <li class="nav-small-cap">{{__('Main Contents')}}</li>
-                <li> <a class="has-arrow waves-effect waves-dark" href="#!" aria-expanded="false"><i class="mdi mdi-database"></i>
+                <li> <a class="has-arrow waves-effect waves-dark" href="#!" aria-expanded="false"><i class="mdi mdi-cart"></i>
                         <span class="hide-menu">{{__('Products')}}</span></a>
                     <ul aria-expanded="false" class="collapse">
-                        <li><a href="form-layout.html">{{__('All Products')}}</a></li>
-                        <li><a href="form-layout.html">{{__('Add Product')}}</a></li>
+                        <li><a href="{{route('admin.product')}}">{{__('All Products')}}</a></li>
+                        <li><a href="{{route('admin.product.create')}}">{{__('Add Product')}}</a></li>
                         <li><a href="{{route('admin.product.category')}}">{{__('Category')}}</a></li>
                         <li><a href="{{route('admin.product.subcategory')}}">{{__('Subcategory')}}</a></li>
                         <li><a href="{{route('admin.product.brand')}}">{{__('Brand')}}</a></li>

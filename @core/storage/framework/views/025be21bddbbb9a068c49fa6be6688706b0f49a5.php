@@ -311,11 +311,11 @@
                 <?php endif; ?>
 
                 <li class="nav-small-cap"><?php echo e(__('Main Contents')); ?></li>
-                <li> <a class="has-arrow waves-effect waves-dark" href="#!" aria-expanded="false"><i class="mdi mdi-database"></i>
+                <li> <a class="has-arrow waves-effect waves-dark" href="#!" aria-expanded="false"><i class="mdi mdi-cart"></i>
                         <span class="hide-menu"><?php echo e(__('Products')); ?></span></a>
                     <ul aria-expanded="false" class="collapse">
-                        <li><a href="form-layout.html"><?php echo e(__('All Products')); ?></a></li>
-                        <li><a href="form-layout.html"><?php echo e(__('Add Product')); ?></a></li>
+                        <li><a href="<?php echo e(route('admin.product')); ?>"><?php echo e(__('All Products')); ?></a></li>
+                        <li><a href="<?php echo e(route('admin.product.create')); ?>"><?php echo e(__('Add Product')); ?></a></li>
                         <li><a href="<?php echo e(route('admin.product.category')); ?>"><?php echo e(__('Category')); ?></a></li>
                         <li><a href="<?php echo e(route('admin.product.subcategory')); ?>"><?php echo e(__('Subcategory')); ?></a></li>
                         <li><a href="<?php echo e(route('admin.product.brand')); ?>"><?php echo e(__('Brand')); ?></a></li>

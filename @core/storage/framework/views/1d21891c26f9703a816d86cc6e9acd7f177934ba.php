@@ -22,4 +22,4 @@
     });
 
     })(jQuery);
-</script>
+</script><?php /**PATH H:\xampp\htdocs\inventory-crm\@core\resources\views/components/summernote/js.blade.php ENDPATH**/ ?>

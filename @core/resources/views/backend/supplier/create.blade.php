@@ -25,7 +25,7 @@
                                 <h4 class="header-title">{{__('New Supplier')}}</h4>
                             </div>
                             <div class="right">
-                                <a href="{{route('admin.supplier')}}" class="btn btn-info text-white">{{__('All Supplier')}}</a>
+                                <a href="{{route('admin.product')}}" class="btn btn-info text-white">{{__('All Supplier')}}</a>
                             </div>
                         </div>
                     </div>

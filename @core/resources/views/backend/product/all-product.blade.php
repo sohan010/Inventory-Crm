@@ -1,11 +1,11 @@
 @extends('backend.admin-master')
 
 @section('site-title')
-    {{__('All Customers')}}
+    {{__('All Products')}}
 @endsection
 
 @section('page-title')
-    {{__('All Customers')}}
+    {{__('All Products')}}
 @endsection
 
 @section('style')
@@ -22,15 +22,16 @@
                     <div class="card-header">
                         <div class="d-flex justify-content-between">
                             <div class="left">
-                                <h3 class="card-title">{{__('All Customers')}}</h3>
+                                <h3 class="card-title">{{__('All Products')}}</h3>
                             </div>
-                            <div class="righ">
-                               <a href="{{route('admin.customer.new')}}" class="btn btn-info text-white">{{__('Add Customer')}}</a>
+                            <div class="right">
+                               <a href="{{route('admin.product.create')}}" class="btn btn-info text-white">{{__('Add Product')}}</a>
+                               <a href="{{route('admin.product.create')}}" class="btn btn-danger">{{__('Trash Products')}}</a>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
-                        @can('customer-delete')
+                        @can('product-delete')
                             <x-bulk-action/>
                         @endcan
                         <div class="table-responsive">
@@ -50,7 +51,7 @@
                                 </thead>
 
                                 <tbody>
-                                @foreach($all_customers as $data)
+                                @foreach($all_products as $data)
                                     <tr>
                                         <td>
                                             <x-bulk-delete-checkbox :id="$data->id" :index="$loop->index"/>
@@ -61,18 +62,18 @@
                                         <td>{{$data->email}}</td>
                                         <td>{{$data->address}}</td>
                                         <td>{{$data->country?->name}}</td>
-                                        <td>{{ \App\Enums\CustomerEnum::getText($data->customer_type) }}</td>
+                                        <td>{{ \App\Enums\CustomerEnum::getText($data->product_type) }}</td>
 
                                         <td>
 
-                                            @can('customer-edit')
-                                                <a href="{{route('admin.customer.edit',$data->id)}}" class="btn btn-outline-primary btn-sm mb-3 mr-1 customer_edit_btn">
+                                            @can('product-edit')
+                                                <a href="{{route('admin.product.edit',$data->id)}}" class="btn btn-outline-primary btn-sm mb-3 mr-1 product_edit_btn">
                                                     <i class="ti-pencil"></i>
                                                 </a>
                                             @endcan
 
-                                            @can('customer-delete')
-                                                <x-delete-popover :url="route('admin.customer.delete',$data->id)"/>
+                                            @can('product-delete')
+                                                <x-delete-popover :url="route('admin.product.delete',$data->id)"/>
                                             @endcan
 
                                         </td>
@@ -90,5 +91,5 @@
 
 @section('script')
     <x-admin-press-datatable.js/>
-    <x-bulk-action-js url="{{route('admin.customer.bulk.action')}}"/>
+    <x-bulk-action-js url="{{route('admin.product.bulk.action')}}"/>
 @endsection

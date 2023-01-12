@@ -148,6 +148,20 @@ Route::prefix('admin-home')->middleware(['setlang:backend','adminglobalVariable'
 
 
         /*----------------------------------------------------------------------------------------------------------------------------
+        |PRODUCT MANAGE
+        |----------------------------------------------------------------------------------------------------------------------------*/
+            Route::controller(Admin\Product\ProductController::class)->prefix('product')->group(function () {
+                Route::get('/list', 'index')->name('admin.product');
+                Route::get('/create', 'create')->name('admin.product.create');
+                Route::post('/store', 'store');
+                Route::get('/edit/{id}', 'store');
+                Route::post('/update', 'update')->name('admin.product.update');
+                Route::post('/delete/{id}', 'delete')->name('admin.product.delete');
+                Route::post('/bulk-action', 'bulk_action')->name('admin.product.bulk.action');
+            });
+
+
+        /*----------------------------------------------------------------------------------------------------------------------------
         | GENERAL SETTINGS MANAGE
         |----------------------------------------------------------------------------------------------------------------------------*/
         Route::controller(Admin\GeneralSettingsController::class)->prefix('general-settings')->group(function () {
