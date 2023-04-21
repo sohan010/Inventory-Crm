@@ -16,8 +16,6 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
-                <div class="alert">
-                </div>
                 <x-msg.error/>
                 <x-msg.success/>
                 <div class="card">
@@ -104,8 +102,8 @@
 
  @section('script')
 
-     @include('backend.popup-modals.product.category.add')
-     @include('backend.popup-modals.product.category.edit')
+     @include('backend.popup-modals.product.subcategory.add')
+     @include('backend.popup-modals.product.subcategory.edit')
 
    <x-admin-press-datatable.js/>
    <x-btn.submit/>
@@ -119,7 +117,6 @@
                     var name = el.data('name');
                     var category = el.data('category');
                     var action = el.data('action');
-
                     var form = $('#product_category_edit_modal_form');
                     form.attr('action', action);
                     form.find('#product_category_id').val(id);

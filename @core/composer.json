@@ -1,10 +1,4 @@
 {
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/Sharifur/paymentgateway.git"
-        }
-    ],
 
     "name": "laravel/laravel",
     "type": "project",
@@ -23,15 +17,15 @@
         "intervention/image": "^2.5",
         "kkomelin/laravel-translatable-string-exporter": "^1.11",
         "laravel/framework": "^8.0",
+        "laravel/sanctum": "^2.15",
         "laravel/socialite": "^5.2",
         "laravel/tinker": "^2.0",
         "mews/purifier": "^3.3",
+        "picqer/php-barcode-generator": "^2.2",
         "spatie/laravel-feed": "^3.2",
         "spatie/laravel-permission": "^4.2",
         "spatie/laravel-sitemap": "^5.7",
-        "xgenious/paymentgateway": "^2.0",
-        "yajra/laravel-datatables-oracle": "~9.0",
-        "laravel/sanctum": "^2.15"
+        "yajra/laravel-datatables-oracle": "~9.0"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",

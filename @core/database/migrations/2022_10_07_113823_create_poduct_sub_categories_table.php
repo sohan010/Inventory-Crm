@@ -10,7 +10,7 @@ class CreatePoductSubCategoriesTable extends Migration
     {
         Schema::create('product_subcategories', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('product_category_id');
+            $table->bigInteger('product_category_id');
             $table->string('name');
             $table->string('status');
             $table->timestamps();

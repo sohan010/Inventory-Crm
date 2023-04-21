@@ -9613,3 +9613,30 @@ input[type=checkbox]:not(:disabled).tabbed:focus ~ .lever:after, input[type=chec
 .product_add_card_body .form-group {
     margin-bottom: 0 !important;
 }
+
+.select2-container--default .select2-selection--multiple {
+    height: 45px;
+}
+
+.product_add_card_body .product_code_icon{
+   cursor:pointer;
+}
+
+
+.product_list_table td ul li{
+    list-style-type: none;
+}
+
+
+.product_list_table .attachment-preview .thumbnail .centered img {
+    max-width: 98%;
+}
+
+.pos_page .pos_cart_footer .cart_percentage_show {
+    font-size: 14px;
+    color: #1976d2 !important;
+    margin-top: 2px;
+}
+
+
+

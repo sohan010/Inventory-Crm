@@ -3,7 +3,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title"><?php echo e(__('Edit Subcategory Item')); ?></h5>
+                    <h5 class="modal-title"><?php echo e(__('Edit Category Item')); ?></h5>
                     <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
                 </div>
 
@@ -13,7 +13,6 @@
                         <?php echo csrf_field(); ?>
 
                         <input type="hidden" name="id" id="product_category_id" value="">
-
 
                         <label for="edit_name"><?php echo e(__('Name')); ?></label>
                         <div class="input-group">

@@ -146,6 +146,17 @@ Route::prefix('admin-home')->middleware(['setlang:backend','adminglobalVariable'
                 Route::post('/bulk-action', 'bulk_action')->name('admin.unit.bulk.action');
             });
 
+        /*----------------------------------------------------------------------------------------------------------------------------
+        |COUPON MANAGE
+        |----------------------------------------------------------------------------------------------------------------------------*/
+            Route::controller(Admin\Product\ProductCouponController::class)->prefix('coupon')->group(function () {
+                Route::get('/all', 'index')->name('admin.coupon');
+                Route::post('/all', 'store');
+                Route::post('/update', 'update')->name('admin.coupon.update');
+                Route::post('/delete/{id}', 'delete')->name('admin.coupon.delete');
+                Route::post('/bulk-action', 'bulk_action')->name('admin.coupon.bulk.action');
+            });
+
 
         /*----------------------------------------------------------------------------------------------------------------------------
         |PRODUCT MANAGE
@@ -153,12 +164,45 @@ Route::prefix('admin-home')->middleware(['setlang:backend','adminglobalVariable'
             Route::controller(Admin\Product\ProductController::class)->prefix('product')->group(function () {
                 Route::get('/list', 'index')->name('admin.product');
                 Route::get('/create', 'create')->name('admin.product.create');
-                Route::post('/store', 'store');
-                Route::get('/edit/{id}', 'store');
-                Route::post('/update', 'update')->name('admin.product.update');
+                Route::post('/store', 'store')->name('admin.product.store');
+                Route::get('/edit/{id}', 'edit')->name('admin.product.edit');
+                Route::put('/update/{id}', 'update')->name('admin.product.update');
+                Route::post('/clone', 'clone')->name('admin.product.clone');
                 Route::post('/delete/{id}', 'delete')->name('admin.product.delete');
                 Route::post('/bulk-action', 'bulk_action')->name('admin.product.bulk.action');
+
+                //Ajax Routes
+                Route::get('/get-subcategory-by-category-ajax', 'get_subcategory_by_category_ajax')->name('admin.product.get.subcategory.ajax');
+                Route::get('/get-product-code-ajax', 'get_product_code_by_ajax')->name('admin.product.get.product.code.ajax');
+
+                //Trash Product Routes
+                Route::get('/trash-list', 'trash_product_list')->name('admin.product.trash');
+                Route::get('/trash-restore/{id}', 'trash_product_restore')->name('admin.product.trash.restore');
+                Route::post('/trash-delete/{id}', 'trash_product_delete')->name('admin.product.trash.delete');
+                Route::post('/trash-bulk-delete', 'trash_product_bulk_action')->name('admin.product.trash.bulk.action');
+
             });
+
+
+
+    /*----------------------------------------------------------------------------------------------------------------------------
+     | POS ROUTE
+    |----------------------------------------------------------------------------------------------------------------------------*/
+    Route::controller(Admin\Pos\PosController::class)->prefix('pos')->group(function () {
+        Route::get('/', 'index')->name('admin.pos');
+        Route::get('/get-misc-contents-by-ajax', 'get_misc_contents_by_ajax')->name('admin.pos.get.misc.contents.by.ajax');
+        Route::get('/get-products-by-misc-contents-ajax', 'get_products_by_misc_contents_ajax')->name('admin.pos.get.products.by.misc.contents.ajax');
+        Route::get('/fetch-cart-data', 'fetch_all_cart_data')->name('admin.product.fetch.all.cart.data');
+        Route::post('/add-to-cart', 'product_add_to_cart_pos')->name('admin.product.add.to.cart.pos');
+        Route::post('/add-to-cart-plus-minus', 'product_add_to_cart_pos_plus_minus')->name('admin.product.add.to.cart.pos.plus.minus');
+        Route::post('/cart-item-delete', 'product_pos_item_delete')->name('admin.product.cart.pos.item.delete');
+        Route::post('/cart-discount-store', 'product_pos_discount_store')->name('admin.product.cart.pos.discount.store');
+        Route::post('/cart-coupon-discount-store', 'coupon_discount_store')->name('admin.cart.pos.coupon.discount.store');
+        Route::post('/cart-vat-tax-store', 'vat_tax_store')->name('admin.product.cart.pos.vat.tax.store');
+        Route::post('/cart-shipping-store', 'shipping_store')->name('admin.product.cart.pos.shipping.store');
+        Route::get('/cart-grand-total', 'cart_grand_total_calculation')->name('admin.product.cart.pos.grand.total');
+        Route::post('/cart-customer-store', 'cart_customer_store')->name('admin.customer.ajax.store');
+    });
 
 
         /*----------------------------------------------------------------------------------------------------------------------------

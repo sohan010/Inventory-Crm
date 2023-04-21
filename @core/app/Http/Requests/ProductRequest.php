@@ -13,15 +13,24 @@ class ProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|max:191',
-            'email' => 'required|email|max:191|unique:customers,id',
-            'address' => 'required|string|max:191',
-            'phone' => 'required|string|max:191',
-            'city' => 'required|string|max:191',
-            'country_id' => 'required',
-            'customer_type' => 'nullable',
-            'nid' => 'nullable|string|max:191',
-            'company_name' => 'nullable|string|max:191',
+            'product_name' => 'required',
+            'product_code' => 'required',
+            'product_category_id' => 'required|string|max:191',
+            'product_subcategory_id' => 'required|string|max:191',
+            'brand_id' => 'nullable|string|max:191',
+            'unit_id' => 'required',
+            'product_colors' => 'nullable',
+            'product_sizes' => 'nullable',
+            'product_description' => 'nullable',
+            'alert_message' => 'nullable|string',
+            'purchase_price' => 'required',
+            'sale_price' => 'required',
+            'quantity' => 'required',
+            'barcode' => 'nullable|string|max:191',
+            'alert_qty' => 'nullable',
+            'image' => 'nullable|string|max:191',
+            'feature' => 'nullable|string|max:191',
+            'status' => 'nullable',
         ];
     }
 
@@ -29,8 +38,8 @@ class ProductRequest extends FormRequest
     public function messages()
     {
        return [
-           'name.required' => __('Name has to given'),
-           'email.required' => __('Email has to given'),
+           'product_name.required' => __('Product Name has to given'),
+           'product_code.required' => __('Product code has to given'),
        ];
     }
 }

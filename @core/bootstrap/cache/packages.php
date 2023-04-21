@@ -1,15 +1,4 @@
 <?php return array (
-  'anandsiddharth/laravel-paytm-wallet' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Anand\\LaravelPaytmWallet\\PaytmWalletServiceProvider',
-    ),
-    'aliases' => 
-    array (
-      'PaytmWallet' => 'Anand\\LaravelPaytmWallet\\Facades\\PaytmWallet',
-    ),
-  ),
   'barryvdh/laravel-dompdf' => 
   array (
     'providers' => 
@@ -19,13 +8,6 @@
     'aliases' => 
     array (
       'PDF' => 'Barryvdh\\DomPDF\\Facade',
-    ),
-  ),
-  'billowapp/payfast' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Billow\\PayfastServiceProvider',
     ),
   ),
   'facade/ignition' => 
@@ -55,28 +37,6 @@
     'aliases' => 
     array (
       'Image' => 'Intervention\\Image\\Facades\\Image',
-    ),
-  ),
-  'jomweb/billplz-laravel' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Billplz\\Laravel\\BillplzServiceProvider',
-    ),
-    'aliases' => 
-    array (
-      'Billplz' => 'Billplz\\Laravel\\Billplz',
-    ),
-  ),
-  'kingflamez/laravelrave' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'KingFlamez\\Rave\\RaveServiceProvider',
-    ),
-    'aliases' => 
-    array (
-      'Rave' => 'KingFlamez\\Rave\\Facades\\Rave',
     ),
   ),
   'kkomelin/laravel-translatable-string-exporter' => 
@@ -129,17 +89,6 @@
       'Purifier' => 'Mews\\Purifier\\Facades\\Purifier',
     ),
   ),
-  'mollie/laravel-mollie' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Mollie\\Laravel\\MollieServiceProvider',
-    ),
-    'aliases' => 
-    array (
-      'Mollie' => 'Mollie\\Laravel\\Facades\\Mollie',
-    ),
-  ),
   'nesbot/carbon' => 
   array (
     'providers' => 
@@ -152,13 +101,6 @@
     'providers' => 
     array (
       0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
-    ),
-  ),
-  'paytabscom/laravel_paytabs' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Paytabscom\\Laravel_paytabs\\PaypageServiceProvider',
     ),
   ),
   'spatie/laravel-feed' => 
@@ -180,46 +122,6 @@
     'providers' => 
     array (
       0 => 'Spatie\\Sitemap\\SitemapServiceProvider',
-    ),
-  ),
-  'srmklive/paypal' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Srmklive\\PayPal\\Providers\\PayPalServiceProvider',
-    ),
-    'aliases' => 
-    array (
-      'PayPal' => 'Srmklive\\PayPal\\Facades\\PayPal',
-    ),
-  ),
-  'tzsk/payu' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Tzsk\\Payu\\PayuServiceProvider',
-    ),
-    'aliases' => 
-    array (
-      'Payu' => 'Tzsk\\Payu\\Facades\\Payu',
-    ),
-  ),
-  'unicodeveloper/laravel-paystack' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Unicodeveloper\\Paystack\\PaystackServiceProvider',
-    ),
-    'aliases' => 
-    array (
-      'Paystack' => 'Unicodeveloper\\Paystack\\Facades\\Paystack',
-    ),
-  ),
-  'xgenious/paymentgateway' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Xgenious\\Paymentgateway\\Providers\\PaymentgatewayServiceProvider',
     ),
   ),
   'yajra/laravel-datatables-oracle' => 

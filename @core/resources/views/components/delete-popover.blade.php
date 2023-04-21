@@ -1,4 +1,4 @@
-<a tabindex="0" class="btn btn-outline-danger btn-xs mb-3 mr-1 swal_delete_button">
+<a tabindex="0" class="btn btn-outline-danger btn-xs mb-3 mr-1 swal_delete_button" data-toggle="tooltip" data-title="Delete">
     <i class="ti-trash"></i>
 </a>
 <form method='post' action='{{$url}}' class="d-none">

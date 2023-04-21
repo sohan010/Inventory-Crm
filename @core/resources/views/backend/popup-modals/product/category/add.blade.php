@@ -10,6 +10,7 @@
                     <div class="modal-body">
                         @csrf
 
+
                         <label for="edit_name">{{__('Name')}}</label>
                         <div class="input-group">
                             <div class="input-group-addon"><i class="ti-user"></i></div>

@@ -1,235 +1,3 @@
-{{--<div class="sidebar-menu">--}}
-{{--    <div class="sidebar-header">--}}
-{{--        <div class="logo">--}}
-{{--            <a href="{{route('admin.home')}}">--}}
-{{--                @if(get_static_option('site_admin_dark_mode') == 'off')--}}
-{{--                    {!! render_image_markup_by_attachment_id(get_static_option('site_logo')) !!}--}}
-{{--                @else--}}
-{{--                    {!! render_image_markup_by_attachment_id(get_static_option('site_white_logo')) !!}--}}
-{{--                @endif--}}
-{{--            </a>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--    <div class="main-menu">--}}
-{{--        <div class="menu-inner">--}}
-{{--            <nav>--}}
-{{--                <ul class="metismenu" id="menu">--}}
-{{--                    <li class="{{active_menu('admin-home')}}">--}}
-{{--                        <a href="{{route('admin.home')}}"--}}
-{{--                           aria-expanded="true">--}}
-{{--                            <i class="ti-dashboard"></i>--}}
-{{--                            <span>@lang('dashboard')</span>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
-{{--                    @if(auth()->guard('admin')->user()->hasRole('Super Admin'))--}}
-{{--                        <li class="main_dropdown @if(request()->is(['admin-home/admin/*'])) active @endif">--}}
-{{--                            <a href="javascript:void(0)" aria-expanded="true"><i class="ti-user"></i>--}}
-{{--                                <span>{{__('Admin Manage')}}</span></a>--}}
-{{--                            <ul class="collapse">--}}
-{{--                                <li class="{{active_menu('admin-home/admin/all-user')}}"><a--}}
-{{--                                            href="{{route('admin.all.user')}}">{{__('All Admin')}}</a></li>--}}
-{{--                                <li class="{{active_menu('admin-home/admin/new-user')}}"><a--}}
-{{--                                            href="{{route('admin.new.user')}}">{{__('Add New Admin')}}</a></li>--}}
-{{--                                <li class="{{active_menu('admin-home/admin/role')}} "><a--}}
-{{--                                            href="{{route('admin.all.admin.role')}}">{{__('All Admin Role')}}</a></li>--}}
-{{--                            </ul>--}}
-{{--                        </li>--}}
-{{--                    @endif--}}
-
-{{--                    @canany(['user-list','user-create'])--}}
-{{--                    <li--}}
-{{--                            class="main_dropdown--}}
-{{--                        @if(request()->is(['admin-home/frontend/new-user','admin-home/frontend/all-user','admin-home/frontend/all-user/role'])) active @endif--}}
-{{--                                    ">--}}
-{{--                        <a href="javascript:void(0)" aria-expanded="true"><i class="ti-user"></i>--}}
-{{--                            <span>{{__('Users Manage')}}</span></a>--}}
-{{--                        <ul class="collapse">--}}
-{{--                            @can('user-list')--}}
-{{--                                <li class="{{active_menu('admin-home/frontend/all-user')}}"><a--}}
-{{--                                            href="{{route('admin.all.frontend.user')}}">{{__('All Users')}}</a></li>--}}
-{{--                            @endcan--}}
-{{--                            @can('user-create')--}}
-{{--                                <li class="{{active_menu('admin-home/frontend/new-user')}}"><a--}}
-{{--                                            href="{{route('admin.frontend.new.user')}}">{{__('Add New User')}}</a></li>--}}
-{{--                            @endcan--}}
-{{--                        </ul>--}}
-
-{{--                    </li>--}}
-{{--                    @endcanany--}}
-
-
-
-
-
-{{--                    @can('testimonial-list')--}}
-{{--                        <li class="main_dropdown {{active_menu('admin-home/testimonial/all')}}">--}}
-{{--                            <a href="{{route('admin.testimonial')}}" aria-expanded="true"><i--}}
-{{--                                        class="ti-control-forward"></i>--}}
-{{--                                <span>{{__('Testimonial')}}</span></a>--}}
-{{--                        </li>--}}
-{{--                    @endcan--}}
-
-
-{{--                    @canany([--}}
-{{--                        'donation-list',--}}
-{{--                        'donation-create',--}}
-{{--                        'donation-category-list',--}}
-{{--                        'donation-pending-cause',--}}
-{{--                        'donation-withdraw-list',--}}
-{{--                        'onation-payment-list',--}}
-{{--                        'donation-cause-report',--}}
-{{--                        'donation-flag-report-list',--}}
-{{--                        'donation-settings'--}}
-{{--                        ])--}}
-
-{{--                    <li class="main_dropdown @if(request()->is(['admin-home/donations/*','admin-home/donations'])) active @endif ">--}}
-{{--                        <a href="javascript:void(0)" aria-expanded="true">--}}
-{{--                            <i class="ti-agenda mr-2"></i> {{__('Donation')}}--}}
-{{--                        </a>--}}
-{{--                        <ul class="collapse">--}}
-{{--                            @can('donation-list')--}}
-{{--                                <li class="{{active_menu('admin-home/donations')}}"><a--}}
-{{--                                            href="{{route('admin.donations.all')}}">{{__('All Causes')}}</a>--}}
-{{--                                </li>--}}
-{{--                            @endcan--}}
-{{--                            @can('donation-create')--}}
-{{--                                <li class="{{active_menu('admin-home/donations/new')}}"><a--}}
-{{--                                            href="{{route('admin.donations.new')}}">{{__('Add New Cause')}}</a>--}}
-{{--                                </li>--}}
-{{--                            @endcan--}}
-{{--                            @can('donation-category-list')--}}
-{{--                                <li class="{{active_menu('admin-home/donations/category')}}"><a--}}
-{{--                                            href="{{route('admin.donations.category.all')}}">{{__('Causes Category')}}</a>--}}
-{{--                                </li>--}}
-{{--                            @endcan--}}
-{{--                            @can('donation-pending-cause')--}}
-{{--                                <li class="{{active_menu('admin-home/donations/pending')}}"><a--}}
-{{--                                            href="{{route('admin.donations.pending.all')}}">{{__('All Pending Causes')}} <span class="badge"></span></a>--}}
-{{--                                </li>--}}
-{{--                            @endcan--}}
-
-{{--                            @can('donation-payment-list')--}}
-{{--                                <li class="{{active_menu('admin-home/donations/payment-logs')}}"><a--}}
-{{--                                            href="{{route('admin.donations.payment.logs')}}">{{__('Causes Payment Logs')}}</a>--}}
-{{--                                </li>--}}
-{{--                            @endcan--}}
-{{--                            @can('donation-cause-report')--}}
-{{--                                <li class="{{active_menu('admin-home/donations/report')}}">--}}
-{{--                                    <a href="{{route('admin.donations.report')}}">{{__('Causes Report')}}</a>--}}
-{{--                                </li>--}}
-{{--                            @endcan--}}
-
-{{--                        </ul>--}}
-{{--                    </li>--}}
-{{--                    @endcanany--}}
-
-
-
-
-{{--                    <li class="main_dropdown @if(request()->is(['admin-home/notification/all'])) active @endif">--}}
-{{--                        <a href="javascript:void(0)"--}}
-{{--                           aria-expanded="true">--}}
-{{--                            <i class="ti-agenda mr-2"></i>  {{__('Notifications')}}--}}
-{{--                        </a>--}}
-{{--                        <ul class="collapse">--}}
-{{--                                <li class="{{active_menu('admin-home/notification/all')}}">--}}
-{{--                                    <a href="{{route('admin.notification')}}">{{__('All Notification')}}</a>--}}
-{{--                                </li>--}}
-
-{{--                        </ul>--}}
-{{--                    </li>--}}
-
-
-{{--                    @canany([--}}
-{{--                    'general-settings-site-identity',--}}
-{{--                    'general-settings-basic-settings',--}}
-{{--                    'general-settings-color-settings',--}}
-{{--                    'general-settings-typography',--}}
-{{--                    'general-settings-seo-settings',--}}
-{{--                    'general-settings-third-party-script',--}}
-{{--                    'general-settings-email-template',--}}
-{{--                    'general-settings-smtp-settings',--}}
-{{--                    'general-settings-page-settings',--}}
-{{--                    'general-settings-payment-gateway',--}}
-{{--                    'general-settings-cache-settings',--}}
-{{--                    'general-settings-sitemap',--}}
-{{--                    'general-settings-database-upgrade',--}}
-
-{{--                    ])--}}
-{{--                       <li class="main_dropdown @if(request()->is('admin-home/general-settings/*')) active @endif">--}}
-{{--                        <a href="javascript:void(0)" aria-expanded="true"><i class="ti-settings"></i>--}}
-{{--                            <span>{{__('General Settings')}}</span></a>--}}
-{{--                        <ul class="collapse ">--}}
-{{--                            @can('general-settings-site-identity')--}}
-{{--                                <li class="{{active_menu('admin-home/general-settings/site-identity')}}"><a--}}
-{{--                                            href="{{route('admin.general.site.identity')}}">{{__('Site Identity')}}</a>--}}
-{{--                                </li>--}}
-{{--                            @endcan--}}
-{{--                            @can('general-settings-basic-settings')--}}
-{{--                                <li class="{{active_menu('admin-home/general-settings/basic-settings')}}"><a--}}
-{{--                                            href="{{route('admin.general.basic.settings')}}">{{__('Basic Settings')}}</a>--}}
-{{--                                </li>--}}
-{{--                            @endcan--}}
-
-
-{{--                            @can('general-settings-seo-settings')--}}
-{{--                                <li class="{{active_menu('admin-home/general-settings/seo-settings')}}"><a--}}
-{{--                                            href="{{route('admin.general.seo.settings')}}">{{__('SEO Settings')}}</a>--}}
-{{--                                </li>--}}
-{{--                            @endcan--}}
-{{--                            @can('general-settings-third-party-script')--}}
-{{--                                <li class="{{active_menu('admin-home/general-settings/scripts')}}"><a--}}
-{{--                                            href="{{route('admin.general.scripts.settings')}}">{{__('Third Party Scripts')}}</a>--}}
-{{--                                </li>--}}
-{{--                            @endcan--}}
-
-{{--                            @can('general-settings-smtp-settings')--}}
-{{--                                <li class="{{active_menu('admin-home/general-settings/smtp-settings')}}"><a--}}
-{{--                                            href="{{route('admin.general.smtp.settings')}}">{{__('SMTP Settings')}}</a>--}}
-{{--                                </li>--}}
-{{--                            @endcan--}}
-
-
-{{--                            @can('general-settings-payment-gateway')--}}
-{{--                                @if(!empty(get_static_option('site_payment_gateway')))--}}
-{{--                                    <li class="{{active_menu('admin-home/general-settings/payment-settings')}}"><a--}}
-{{--                                                href="{{route('admin.general.payment.settings')}}">{{__('Payment Gateway Settings')}}</a>--}}
-{{--                                    </li>--}}
-{{--                                @endif--}}
-{{--                            @endcan--}}
-
-{{--                            @can('general-settings-cache-settings')--}}
-{{--                                <li class="{{active_menu('admin-home/general-settings/cache-settings')}}"><a--}}
-{{--                                            href="{{route('admin.general.cache.settings')}}">{{__('Cache Settings')}}</a>--}}
-{{--                                </li>--}}
-{{--                            @endcan--}}
-
-
-
-{{--                                @can('general-settings-database-upgrade')--}}
-{{--                                <li class="{{active_menu('admin-home/general-settings/database-upgrade')}}"><a--}}
-{{--                                            href="{{route('admin.general.database.upgrade')}}">{{__('Database Upgrade')}}</a>--}}
-{{--                                </li>--}}
-{{--                                @endcan--}}
-
-{{--                        </ul>--}}
-{{--                    </li>--}}
-{{--                    @endcanany--}}
-
-
-{{--                    @can('language-list')--}}
-{{--                    <li class="@if(request()->is('admin-home/languages/*') || request()->is('admin-home/languages') ) active @endif">--}}
-{{--                        <a href="{{route('admin.languages')}}" aria-expanded="true"><i class="ti-signal"></i>--}}
-{{--                            <span>{{__('Languages')}}</span></a>--}}
-{{--                    </li>--}}
-{{--                    @endcan--}}
-{{--                </ul>--}}
-{{--            </nav>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--</div>--}}
-
-
 
 <aside class="left-sidebar">
     <div class="scroll-sidebar">
@@ -264,8 +32,8 @@
                 </li>
 
                 <li class="{{active_menu('admin-home')}}">
-                    <a class="waves-effect waves-dark" href="{{route('admin.home')}}" aria-expanded="false">
-                        <i class="mdi mdi-home"></i>
+                    <a class="waves-effect waves-dark" href="{{route('admin.pos')}}" aria-expanded="false">
+                        <i class="mdi mdi-view-dashboard"></i>
                         <span class="hide-menu">{{__('POS')}}</span>
                     </a>
                 </li>
@@ -310,6 +78,8 @@
                     </li>
                 @endcanany
 
+
+
                 <li class="nav-small-cap">{{__('Main Contents')}}</li>
                 <li> <a class="has-arrow waves-effect waves-dark" href="#!" aria-expanded="false"><i class="mdi mdi-cart"></i>
                         <span class="hide-menu">{{__('Products')}}</span></a>
@@ -325,6 +95,17 @@
                     </ul>
                 </li>
 
+                @canany(['employee-list','employee-create'])
+                    <li> <a class="has-arrow waves-effect waves-dark" href="#!" aria-expanded="false"><i class="mdi mdi-account-multiple-outline"></i>
+                            <span class="hide-menu">{{__('HRM Manage')}}</span></a>
+                        <ul aria-expanded="false" class="collapse">
+                            @can('employee-list')
+                                <li><a href="{{route('admin.supplier')}}">{{__('All Employee')}} </a></li>
+                            @endcan
+                        </ul>
+                    </li>
+                @endcanany
+
                 <li class="nav-small-cap">{{__('Setting & Others')}}</li>
 
 
@@ -335,12 +116,10 @@
                     </a>
 
                     <ul aria-expanded="false" class="collapse">
+                         <li><a href="{{route('admin.coupon')}}">{{__('Coupon Settings')}}</a></li>
                          <li><a href="{{route('admin.country')}}">{{__('Country Settings')}}</a></li>
                     </ul>
                 </li>
-
-
-
 
                 <li>
                     <a class="has-arrow waves-effect waves-dark" href="#!" aria-expanded="false">

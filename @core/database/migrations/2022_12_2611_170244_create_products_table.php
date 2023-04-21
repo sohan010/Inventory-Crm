@@ -11,10 +11,10 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('product_category_id');
-            $table->unsignedBigInteger('product_subcategory_id');
-            $table->unsignedBigInteger('brand_id');
-            $table->unsignedBigInteger('unit_id');
+            $table->bigInteger('product_category_id');
+            $table->bigInteger('product_subcategory_id');
+            $table->bigInteger('brand_id');
+            $table->bigInteger('unit_id');
             $table->string('product_code');
             $table->string('product_name');
             $table->longText('product_description');
@@ -27,15 +27,15 @@ class CreateProductsTable extends Migration
             $table->bigInteger('image')->nullable();
             $table->bigInteger('alert_qty')->nullable();
             $table->text('alert_message')->nullable();
-            $table->unsignedBigInteger('sold_count');
+            $table->bigInteger('sold_count');
             $table->boolean('status')->default(1);
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('product_category_id')->references('id')->on('product_categories')->cascadeOnDelete();
-            $table->foreign('product_subcategory_id')->references('id')->on('product_subcategories')->cascadeOnDelete();
-            $table->foreign('brand_id')->references('id')->on('brands')->cascadeOnDelete();
-            $table->foreign('unit_id')->references('id')->on('units')->cascadeOnDelete();
+            $table->dropConstrainedForeignId('product_category_id')->references('id')->on('product_categories')->cascadeOnDelete();
+            $table->dropConstrainedForeignId('product_subcategory_id')->references('id')->on('product_subcategories')->cascadeOnDelete();
+            $table->dropConstrainedForeignId('brand_id')->references('id')->on('brands')->cascadeOnDelete();
+            $table->dropConstrainedForeignId('unit_id')->references('id')->on('units')->cascadeOnDelete();
         });
     }
 

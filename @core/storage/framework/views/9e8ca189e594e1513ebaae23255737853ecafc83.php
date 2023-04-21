@@ -27,8 +27,6 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
-                <div class="alert">
-                </div>
                 <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
 <?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.msg.error','data' => []]); ?>
 <?php $component->withName('msg.error'); ?>
@@ -192,8 +190,8 @@
 
  <?php $__env->startSection('script'); ?>
 
-     <?php echo $__env->make('backend.popup-modals.product.category.add', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-     <?php echo $__env->make('backend.popup-modals.product.category.edit', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+     <?php echo $__env->make('backend.popup-modals.product.subcategory.add', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+     <?php echo $__env->make('backend.popup-modals.product.subcategory.edit', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
    <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
 <?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.admin-press-datatable.js','data' => []]); ?>
@@ -251,7 +249,6 @@
                     var name = el.data('name');
                     var category = el.data('category');
                     var action = el.data('action');
-
                     var form = $('#product_category_edit_modal_form');
                     form.attr('action', action);
                     form.find('#product_category_id').val(id);

@@ -10,6 +10,7 @@
                     <div class="modal-body">
                         <?php echo csrf_field(); ?>
 
+
                         <label for="edit_name"><?php echo e(__('Name')); ?></label>
                         <div class="input-group">
                             <div class="input-group-addon"><i class="ti-user"></i></div>

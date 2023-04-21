@@ -59,7 +59,7 @@
                                 <h4 class="header-title"><?php echo e(__('New Supplier')); ?></h4>
                             </div>
                             <div class="right">
-                                <a href="<?php echo e(route('admin.supplier')); ?>" class="btn btn-info text-white"><?php echo e(__('All Supplier')); ?></a>
+                                <a href="<?php echo e(route('admin.product')); ?>" class="btn btn-info text-white"><?php echo e(__('All Supplier')); ?></a>
                             </div>
                         </div>
                     </div>

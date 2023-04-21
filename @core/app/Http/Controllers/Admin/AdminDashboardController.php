@@ -86,12 +86,10 @@ class AdminDashboardController extends Controller
 
 
         //recent 5 cause and event attendance
-        $causes_recent = CauseLogs::orderBy('id','desc')->take(5)->get();
 
         return view('backend.admin-home')->with([
             'total_admin' => $total_admin,
             'total_user' => $total_user,
-            'causes_recent' => $causes_recent,
         ]);
     }
 

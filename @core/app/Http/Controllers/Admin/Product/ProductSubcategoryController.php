@@ -19,6 +19,7 @@ class ProductSubcategoryController extends Controller
 
         $all_subcategories = PoductSubCategory::select('id','name','status','created_at','product_category_id')->orderBy('id','desc')->get();
         $all_categories = ProductCategory::select('id','name')->get();
+
         return view(self::BASE_PATH.'subcategory')->with([
             'all_categories' => $all_categories,
             'all_subcategories' => $all_subcategories,

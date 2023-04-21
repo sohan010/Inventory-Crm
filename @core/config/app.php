@@ -180,7 +180,6 @@ return [
          * */
         App\Providers\ValidatorServiceProvider::class,
         App\Providers\FundorexMacroServiceProvider::class,
-        \Paytabscom\Laravel_paytabs\PaypageServiceProvider::class,
     ],
 
     /*

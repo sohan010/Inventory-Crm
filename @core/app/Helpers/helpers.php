@@ -2909,3 +2909,14 @@ function get_exchange_rate($for = 'USD'){
             return ($global_currency !== 'USD') ? $currency_filed_name : 0;
     }
 }
+
+function get_barcode($barcode)
+{
+    if(!empty($barcode)){
+        $generatorPNG = new Picqer\Barcode\BarcodeGeneratorPNG();
+        $data = base64_encode($generatorPNG->getBarcode($barcode, $generatorPNG::TYPE_CODE_128));
+        return '<h5>Barcode : '.$barcode.'</h5><img src="data:image/png;base64,'.$data.'">';
+    }
+
+    return false;
+}

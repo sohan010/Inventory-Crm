@@ -59,7 +59,7 @@
                             </div>
                             <div class="right">
                                <a href="<?php echo e(route('admin.product.create')); ?>" class="btn btn-info text-white"><?php echo e(__('Add Product')); ?></a>
-                               <a href="<?php echo e(route('admin.product.create')); ?>" class="btn btn-danger"><?php echo e(__('Trash Products')); ?></a>
+                               <a href="<?php echo e(route('admin.product.trash')); ?>" class="btn btn-danger"><?php echo e(__('Trash Products')); ?></a>
                             </div>
                         </div>
                     </div>
@@ -78,7 +78,7 @@
 <?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
 <?php endif; ?>
                         <?php endif; ?>
-                        <div class="table-responsive">
+                        <div class="table-responsive product_list_table">
                             <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                                 <thead>
                                 <tr>
@@ -95,12 +95,13 @@
 <?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
 <?php endif; ?>
                                     <th><?php echo e(__('ID')); ?></th>
-                                    <th><?php echo e(__('Name')); ?></th>
-                                    <th><?php echo e(__('Phone')); ?></th>
-                                    <th><?php echo e(__('Email')); ?></th>
-                                    <th><?php echo e(__('Address')); ?></th>
-                                    <th><?php echo e(__('Country')); ?></th>
-                                    <th><?php echo e(__('Customer Type')); ?></th>
+                                    <th><?php echo e(__('Image')); ?></th>
+                                    <th><?php echo e(__('Basic Information')); ?></th>
+                                    <th><?php echo e(__('Barcode')); ?></th>
+                                    <th><?php echo e(__('Stock Quantity')); ?></th>
+                                    <th><?php echo e(__('Purchase Price')); ?></th>
+                                    <th><?php echo e(__('Sale Price')); ?></th>
+                                    <th><?php echo e(__('Status')); ?></th>
                                     <th><?php echo e(__('Action')); ?></th>
                                 </tr>
                                 </thead>
@@ -123,19 +124,68 @@
 <?php endif; ?>
                                         </td>
                                         <td><?php echo e($data->id); ?></td>
-                                        <td><?php echo e($data->name); ?></td>
-                                        <td><?php echo e($data->phone); ?></td>
-                                        <td><?php echo e($data->email); ?></td>
-                                        <td><?php echo e($data->address); ?></td>
-                                        <td><?php echo e($data->country?->name); ?></td>
-                                        <td><?php echo e(\App\Enums\CustomerEnum::getText($data->product_type)); ?></td>
-
+                                        <td class="text-info"><?php echo render_attachment_preview_for_admin($data->image); ?></td>
                                         <td>
+                                            <ul>
+                                                <li><?php echo e(__('Product Code')); ?> : <strong class="text-info"><?php echo e($data->product_code); ?></strong> </li>
+                                                <li><?php echo e(__('Product Name')); ?> : <strong class="text-info"><?php echo e($data->product_name); ?></strong></li>
+                                                <li><?php echo e(__('Category')); ?> : <strong class="text-info"><?php echo e($data->category?->name); ?></strong></li>
+                                                <li><?php echo e(__('Subcategory')); ?> : <strong class="text-info"><?php echo e($data->subcategory?->name); ?></strong></li>
+                                                <li><?php echo e(__('Brand')); ?> : <strong class="text-info"><?php echo e($data->brand?->name); ?></strong></li>
 
+                                                <?php
+                                                    $all_colors = $data->colors ?? [];
+                                                    $all_sizes = $data->sizes ?? [];
+                                                ?>
+
+                                                <li><?php echo e(__('Colors')); ?> :
+                                                    <?php $__currentLoopData = $all_colors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $color): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                        <strong class="badge badge-primary"><?php echo e($color->name); ?></strong>
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                </li>
+
+                                                <li><?php echo e(__('Sizes')); ?> :
+                                                    <?php $__currentLoopData = $all_sizes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $size): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                        <strong class="badge badge-info"><?php echo e($size->size_code); ?></strong>
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                </li>
+
+                                                <li><?php echo e(__('Feature Status')); ?> : <strong class="text-info"><?php echo e(\App\Enums\ProductEnum::getText($data->feature)); ?></strong></li>
+                                                <li><?php echo e(__('Sold Count')); ?> : <strong class="text-info"><?php echo e($data->sold_count); ?></strong></li>
+                                            </ul>
+
+                                        </td>
+                                        <td><?php echo get_barcode($data->barcode); ?></td>
+                                        <td class="text-info"><?php echo e($data->quantity); ?></td>
+                                        <td class="text-info"><?php echo e(amount_with_currency_symbol($data->purchase_price)); ?></td>
+                                        <td class="text-info"><?php echo e(amount_with_currency_symbol($data->sale_price)); ?></td>
+
+                                        <td><?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
+<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.status-span','data' => ['status' => ''.e($data->status).'']]); ?>
+<?php $component->withName('status-span'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes(['status' => ''.e($data->status).'']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4)): ?>
+<?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
+<?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
+<?php endif; ?></td>
+                                        <td>
                                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('product-edit')): ?>
-                                                <a href="<?php echo e(route('admin.product.edit',$data->id)); ?>" class="btn btn-outline-primary btn-sm mb-3 mr-1 product_edit_btn">
+                                                <a href="<?php echo e(route('admin.product.edit',$data->id)); ?>" class="btn btn-outline-primary btn-sm mb-3 mr-1 product_edit_btn" data-toggle="tooltip" data-title="Edit">
                                                     <i class="ti-pencil"></i>
                                                 </a>
+
+                                                <form action="<?php echo e(route('admin.product.clone')); ?>" method="post">
+                                                    <?php echo csrf_field(); ?>
+                                                    <input type="hidden" name="id" value="<?php echo e($data->id); ?>">
+                                                    <button type="submit" class="btn btn-outline-info btn-sm mb-3 mr-1 product_edit_btn" data-toggle="tooltip" data-title="Clone">
+                                                        <i class="mdi mdi-content-copy"></i>
+                                                    </button>
+                                                </form>
+
                                             <?php endif; ?>
 
                                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('product-delete')): ?>
@@ -152,7 +202,6 @@
 <?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
 <?php endif; ?>
                                             <?php endif; ?>
-
                                         </td>
                                     </tr>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
