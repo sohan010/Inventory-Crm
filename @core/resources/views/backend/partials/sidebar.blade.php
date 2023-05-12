@@ -95,16 +95,29 @@
                     </ul>
                 </li>
 
-                @canany(['employee-list','employee-create'])
+                <li> <a class="has-arrow waves-effect waves-dark" href="#!" aria-expanded="false"><i class="mdi mdi-car-battery"></i>
+                        <span class="hide-menu">{{__('Order Manage')}}</span></a>
+                    <ul aria-expanded="false" class="collapse">
+                            <li><a href="{{route('admin.order')}}">{{__('All Order')}} </a></li>
+                            <li><a href="{{route('admin.order')}}">{{__('All Reports')}} </a></li>
+                    </ul>
+                </li>
+
+
                     <li> <a class="has-arrow waves-effect waves-dark" href="#!" aria-expanded="false"><i class="mdi mdi-account-multiple-outline"></i>
-                            <span class="hide-menu">{{__('HRM Manage')}}</span></a>
+                            <span class="hide-menu">{{__('HR Manage')}}</span></a>
                         <ul aria-expanded="false" class="collapse">
-                            @can('employee-list')
                                 <li><a href="{{route('admin.supplier')}}">{{__('All Employee')}} </a></li>
-                            @endcan
                         </ul>
                     </li>
-                @endcanany
+
+                <li> <a class="has-arrow waves-effect waves-dark" href="#!" aria-expanded="false"><i class="mdi mdi-cash"></i>
+                        <span class="hide-menu">{{__('Expense Manage')}}</span></a>
+                    <ul aria-expanded="false" class="collapse">
+                            <li><a href="{{route('admin.supplier')}}">{{__('All Expense')}} </a></li>
+                    </ul>
+                </li>
+
 
                 <li class="nav-small-cap">{{__('Setting & Others')}}</li>
 
@@ -156,12 +169,12 @@
                             @endcan
 
                             @can('general-settings-seo-settings')
-                                <li><a href="{{route('admin.general.seo.settings')}}">{{__('SEO Settings')}}</a></li>
+                                <li><a href="{{route('admin.general.company.settings')}}">{{__('Comapany Settings')}}</a></li>
                             @endcan
 
-{{--                            @can('general-settings-third-party-script')--}}
-{{--                                <li><a href="{{route('admin.general.scripts.settings')}}">{{__('Third Party Scripts')}}</a></li>--}}
-{{--                            @endcan--}}
+                                @can('general-settings-payment-settings')
+                                    <li><a href="{{route('admin.general.payment.settings')}}">{{__('Payment Settings')}}</a></li>
+                                @endcan
 
                             @can('general-settings-smtp-settings')
                                 <li><a href="{{route('admin.general.smtp.settings')}}">{{__('SMTP Settings')}}</a></li>

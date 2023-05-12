@@ -7,7 +7,7 @@
 @elseif($status === 'pending')
     <span class="p-2 badge badge-warning" >{{__('Pending')}}</span>
 @elseif($status === 'complete')
-    <span class="p-2 badge badge-success" >{{__('Complete')}}</span>
+    <span class="p-2 badge badge-primary" >{{__('Complete')}}</span>
 @elseif($status === 'close')
     <span class="p-2 badge badge-danger" >{{__('Close')}}</span>
 @elseif($status === 'in_progress')
@@ -24,8 +24,8 @@
     <span class="p-2 badge badge-danger" >{{__('No')}}</span>
 @elseif($status === 'cancel')
     <span class="p-2 badge badge-danger" >{{__('Cancel')}}</span>
-@elseif($status === 'reject')
-    <span class="p-2 badge badge-danger" >{{__('Reject')}}</span>
+@elseif($status === 'due')
+    <span class="p-2 badge badge-danger" >{{__('Due')}}</span>
 @elseif($status === 'pending')
     <span class="p-2 badge badge-warning" >{{__('Pending')}}</span>
 @elseif($status == 1)

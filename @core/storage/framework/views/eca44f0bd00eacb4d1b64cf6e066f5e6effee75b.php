@@ -62,6 +62,7 @@
             top: 80%;
         }
 
+
     </style>
 
 <?php $__env->stopSection(); ?>
@@ -121,6 +122,7 @@
     <?php echo $__env->make('backend.popup-modals.pos.coupon', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <?php echo $__env->make('backend.popup-modals.pos.vat-tax', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <?php echo $__env->make('backend.popup-modals.pos.shipping', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <?php echo $__env->make('backend.popup-modals.pos.payable', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
 <?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.admin-press-datatable.without-butons','data' => []]); ?>
 <?php $component->withName('admin-press-datatable.without-butons'); ?>
@@ -177,6 +179,9 @@
             //Global subtotal passing
             let global_subtotal = $('.global_subtotal').val();
             $('.subtotal_amount').val(global_subtotal);
+
+            //Load alll data globally
+             fetch_all_cart_data();
 
 
         // Fetch all cart data
@@ -236,6 +241,14 @@
                         //calling other functions
                         cart_footer_grand_total_calculation();
 
+
+                        //passing value to main hidden fields
+                        let order_form = $('.pos_order_form');
+                        order_form.find('.main_product_id').val(data.product_ids);
+                        order_form.find('.main_single_quantity').val(data.single_qty);
+                        order_form.find('.main_total_quantity').val(data.total_qty);
+                        order_form.find('.main_subtotal').val(data.total);
+
                     },
                     error: function (){
 
@@ -270,7 +283,6 @@
                     },
 
                     success: function(data){
-
                         let currency_symbol = '<?php echo e(site_currency_symbol()); ?>';
 
                         error_container.removeClass('alert alert-danger');
@@ -290,6 +302,12 @@
                             $('.cart_discount_percentage_show').text('');
                         }
                         cart_footer_grand_total_calculation();
+
+                        //passing main fields
+                        let order_form = $('.pos_order_form');
+                        order_form.find('.main_discount_type').val(data.discount_type);
+                        order_form.find('.main_discount_percentage').val(data.discount_amount);
+                        order_form.find('.main_discount_amount').val(data.amount);
 
                     },
                     error: function(error){
@@ -484,6 +502,12 @@
                     }
                     cart_footer_grand_total_calculation();
 
+                    //passing main fields
+                    let order_form = $('.pos_order_form');
+                    order_form.find('.main_coupon_discount_type').val(data.discount_type);
+                    order_form.find('.main_coupon_percentage').val(data.discount_amount);
+                    order_form.find('.main_coupon_discount').val(data.amount);
+
                 },
                 error: function(error){
                     let er = error.responseJSON;
@@ -536,6 +560,11 @@
                     }
                     cart_footer_grand_total_calculation();
 
+                    //passing main fields
+                    let order_form = $('.pos_order_form');
+                    order_form.find('.main_vat_percentage').val(data.percentage);
+                    order_form.find('.main_vat_amount').val(data.amount);
+
                 },
                 error: function(error){
                     let er = error.responseJSON;
@@ -577,8 +606,11 @@
                         $('.cart_shipping_amount').text(data.shipping_amount);
                     }
 
-
                     cart_footer_grand_total_calculation();
+
+                    //passing main fields
+                    let order_form = $('.pos_order_form');
+                    order_form.find('.main_shipping_amount').val(data.shipping_amount);
 
                 },
                 error: function(error){
@@ -589,6 +621,7 @@
             });
         });
 
+        //shipping zero amount pass
         $(document).on('click', '.shipping_none_btn', function (e) {
             e.preventDefault();
             let el = $(this).data('shipping_none');
@@ -597,8 +630,70 @@
         });
 
 
+    //Payable Charge Set Code
+    $(document).on('click', '.cart_shipping_form_submit_button', function (e) {
+        e.preventDefault();
+        let payable_form = $('.cart_payable_form');
+        let payable_amount = payable_form.find('.payable_amount').val();
+        let subtotal = payable_form.find('input[name="subtotal_amount"]').val();
+        let error_container = payable_form.find('.error-container');
 
-    //Shipping Charge Set Code
+        $.ajax({
+            url: payable_form.attr('action'),
+            type: 'post',
+            data:{
+                payable_amount:payable_amount,
+                subtotal:subtotal,
+                _token:'<?php echo e(csrf_token()); ?>'
+            },
+            success: function (data){
+
+                let currency_symbol = '<?php echo e(site_currency_symbol()); ?>';
+
+                error_container.removeClass('alert alert-danger');
+                error_container.text('');
+                $('.payable_modal_close_button').trigger('click');
+
+                if(data.is_zero == false){
+                    $('.cart_payable_amount').text(data.payable_amount+currency_symbol);
+                }else{
+                    $('.cart_payable_amount').text(data.payable_amount);
+                }
+
+                cart_footer_grand_total_calculation();
+
+                //passing main fields
+                let order_form = $('.pos_order_form');
+                order_form.find('.main_payable_amount').val(data.payable_amount);
+
+            },
+            error: function(error){
+                let er = error.responseJSON;
+                error_container.addClass('alert alert-danger');
+                error_container.text(er.errors['payable_amount'][0]);
+            }
+        });
+    });
+
+    //Payable zero amount pass
+    $(document).on('click', '.payable_none_btn', function (e) {
+        e.preventDefault();
+        let el = $(this).data('payable_none');
+        let payable_form = $('.cart_payable_form');
+        payable_form.find('.payable_amount').val(el);
+        $('.pos_order_form').find('.main_making_full_due').val('due');
+    });
+
+
+    //Payable passing full amount to value
+    $(document).on('click', '.payable_full_amount_btn', function (e) {
+        e.preventDefault();
+        let grand_total = $('.pos_order_form').find('.main_total_amount').val();
+        let payable_form = $('.cart_payable_form');
+        payable_form.find('.payable_amount').val(grand_total);
+        $('.pos_order_form').find('.main_making_full_due').val('paid');
+    });
+
 
     //Cart footer grand total calculation
         function cart_footer_grand_total_calculation()
@@ -607,6 +702,7 @@
             let coupon_amount = $('.cart_coupon_amount').text();
             let vat_tax_amount = $('.cart_vat_tax_amount').text();
             let shipping_amount = $('.cart_shipping_amount').text();
+            let payable_amount = $('.cart_payable_amount').text();
 
             $.ajax({
                 url: '<?php echo e(route('admin.product.cart.pos.grand.total')); ?>',
@@ -616,6 +712,7 @@
                     coupon_amount:coupon_amount,
                     vat_tax_amount:vat_tax_amount,
                     shipping_amount:shipping_amount,
+                    payable_amount:payable_amount,
                 },
                 success: function (data){
 
@@ -629,6 +726,20 @@
                     }
 
                    $('.cart_grand_total_amount').text(data.grand_total+'<?php echo e(site_currency_symbol()); ?>');
+
+                    if(data.due_amount != 0){
+                        $('.cart_due_amount').text(data.due_amount+'<?php echo e(site_currency_symbol()); ?>');
+                    }else{
+                        $('.cart_due_amount').text(data.due_amount);
+                    }
+
+
+                    //passing main fields
+                    let order_form = $('.pos_order_form');
+                    order_form.find('.main_payable_amount').val(data.payable_amount);
+                    order_form.find('.main_due_amount').val(data.due_amount);
+                    order_form.find('.main_total_amount').val(data.grand_total);
+
                 },
                 error: function(error){
                     let er = error.responseJSON;
@@ -686,6 +797,26 @@
         });
 
     });
+
+
+     //Bank transfer payment data show
+    $(document).on('change','.payment_gateway_list_pos',function(){
+        let el = $(this).val();
+
+
+        if(el == 'manual_bank_payment'){
+            $('.manual_payment_parent').removeClass('d-none');
+        }else{
+            $('.manual_payment_parent').addClass('d-none');
+        }
+
+        if(el == 'cheque'){
+            $('.cheque_payment_parent').removeClass('d-none');
+        }else{
+            $('.cheque_payment_parent').addClass('d-none');
+        }
+    });
+
 
 
 //=========== Left side js ========//

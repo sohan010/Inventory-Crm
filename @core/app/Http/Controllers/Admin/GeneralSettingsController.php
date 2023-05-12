@@ -516,24 +516,26 @@ class GeneralSettingsController extends Controller
         return redirect()->back()->with(['msg' => __('Color Settings Update Success'), 'type' => 'success']);
     }
 
-    public function seo_settings()
+    public function company_settings()
     {
-        return view($this->base_path . 'seo');
+        return view($this->base_path . 'company');
     }
 
-    public function update_seo_settings(Request $request)
+    public function update_company_settings(Request $request)
     {
 
             $this->validate($request, [
-                'site_meta_tags' => 'required|string',
-                'site_meta_description' => 'required|string'
+                'company_name' => 'required|string',
+                'company_address' => 'required|string',
+                'company_email' => 'required|string',
+                'company_phone' => 'required|string',
             ]);
 
-            $site_tags = 'site_meta_tags';
-            $site_description = 'site_meta_description';
 
-            update_static_option($site_tags, $request->$site_tags);
-            update_static_option($site_description, $request->$site_description);
+            update_static_option('company_name', $request->company_name);
+            update_static_option('company_address', $request->company_address);
+            update_static_option('company_email', $request->company_email);
+            update_static_option('company_phone', $request->company_phone);
 
 
         return redirect()->back()->with(['msg' => __('SEO Settings Update Success'), 'type' => 'success']);
@@ -660,7 +662,6 @@ class GeneralSettingsController extends Controller
             'paypal_live_client_id'=> 'nullable|string|max:191',
             'paypal_live_client_secret'=> 'nullable|string|max:191',
 
-            'razorpay_preview_logo' => 'nullable|string|max:191',
             'stripe_preview_logo' => 'nullable|string|max:191',
             'paypal_gateway' => 'nullable|string|max:191',
             'paytm_gateway' => 'nullable|string|max:191',
@@ -678,23 +679,17 @@ class GeneralSettingsController extends Controller
             'stripe_secret_key' => 'nullable|string|max:191',
             'site_global_payment_gateway' => 'nullable|string|max:191',
             'paystack_merchant_email' => 'nullable|string|max:191',
-            'paystack_preview_logo' => 'nullable|string|max:191',
             'paystack_public_key' => 'nullable|string|max:191',
             'paystack_secret_key' => 'nullable|string|max:191',
             'cash_on_delivery_gateway' => 'nullable|string|max:191',
             'cash_on_delivery_preview_logo' => 'nullable|string|max:191',
-            'mollie_preview_logo' => 'nullable|string|max:191',
             'mollie_public_key' => 'nullable|string|max:191',
-            'marcado_pagp_client_id' => 'nullable|string|max:191',
-            'marcado_pago_client_secret' => 'nullable|string|max:191',
-            'marcado_pago_test_mode' => 'nullable|string|max:191',
+
         ]);
 
         $global_currency = get_static_option('site_global_currency');
 
         $save_data = [
-            'cash_on_delivery_preview_logo',
-            'paystack_preview_logo',
             'paystack_public_key',
             'paystack_secret_key',
             'paystack_merchant_email',
@@ -704,7 +699,6 @@ class GeneralSettingsController extends Controller
             'paytm_merchant_mid',
             'paytm_merchant_website',
             'site_global_currency',
-            'manual_payment_preview_logo',
             'site_manual_payment_name',
             'site_manual_payment_description',
 
@@ -714,7 +708,6 @@ class GeneralSettingsController extends Controller
 
             'stripe_public_key',
             'stripe_secret_key',
-            'stripe_preview_logo',
             'stripe_gateway',
             'stripe_test_mode',
 
@@ -723,17 +716,14 @@ class GeneralSettingsController extends Controller
             'site_euro_to_ngn_exchange_rate',
 
             'mollie_public_key',
-            'mollie_preview_logo',
             'mollie_test_mode',
 
-            'flutterwave_preview_logo',
             'flw_public_key',
             'flw_secret_key',
             'flw_secret_hash',
             'site_currency_symbol_position',
             'site_default_payment_gateway',
 
-            'paypal_preview_logo',
             'paypal_test_mode',
             'paypal_sandbox_client_id',
             'paypal_sandbox_client_secret',
@@ -755,20 +745,18 @@ class GeneralSettingsController extends Controller
             'site_' . strtolower($global_currency) . '_to_myr_exchange_rate',
 
 
-            'midtrans_preview_logo',
             'midtrans_merchant_id',
             'midtrans_server_key',
             'midtrans_client_key',
             'midtrans_environment',
 
-            'payfast_preview_logo',
             'payfast_merchant_id',
             'payfast_merchant_key',
             'payfast_passphrase',
             'payfast_merchant_env',
             'payfast_itn_url',
 
-            'cashfree_preview_logo',
+
             'cashfree_test_mode',
             'cashfree_app_id',
             'cashfree_secret_key',
@@ -780,43 +768,14 @@ class GeneralSettingsController extends Controller
             'instamojo_password',
             'instamojo_test_mode',
 
-            'marcadopago_preview_logo',
-            'marcado_pago_client_id',
-            'marcado_pago_client_secret',
-            'marcado_pago_test_mode',
-
-            'squareup_gateway',
-            'squareup_test_mode',
-            'squareup_preview_logo',
-            'squareup_access_token',
-            'squareup_location_id',
-
-            'cinetpay_preview_logo',
-            'cinetpay_gateway',
-            'cinetpay_test_mode',
-            'cinetpay_api_key',
-            'cinetpay_site_id',
-
-            'paytabs_preview_logo',
-            'paytabs_gateway',
-            'paytabs_test_mode',
-            'pay_tabs_currency',
-            'pay_tabs_profile_id',
-            'pay_tabs_region',
-            'pay_tabs_server_key',
-
-            'billplz_preview_logo',
-            'billplz_gateway',
-            'billplz_test_mode',
-            'billplz_key',
-            'billplz_version',
-            'billplz_x_signature',
-            'billplz_collection_name',
-
             'zitopay_preview_logo',
             'zitopay_gateway',
             'zitopay_test_mode',
             'zitopay_username',
+
+            'ssl_commerz_test_mode',
+            'ssl_commerz_store_id',
+            'ssl_commerz_store_password',
         ];
 
         foreach ($save_data as $item) {
@@ -842,9 +801,7 @@ class GeneralSettingsController extends Controller
         update_static_option('payfast_test_mode', $request->payfast_test_mode);
         update_static_option('cashfree_gateway', $request->cashfree_gateway);
         update_static_option('instamojo_gateway', $request->instamojo_gateway);
-        update_static_option('marcadopago_gateway', $request->marcadopago_gateway);
-        update_static_option('marcadopago_test_mode', $request->marcadopago_test_mode);
-
+        update_static_option('ssl_commerz_gateway', $request->ssl_commerz_gateway);
 
 
         //Paypal
@@ -913,7 +870,6 @@ class GeneralSettingsController extends Controller
         $env_val['MIDTRANS_CLIENT_KEY'] =  $request->midtrans_client_key ? : 'SB-Mid-client-iDuy-jKdZHkLjL_I';
         $env_val['MIDTRANS_ENVIRONTMENT'] =  $request->midtrans_test_mode ? true : false;
 
-
         $env_val['PF_MERCHANT_ID'] = $request->payfast_merchant_id ? : '10024000';
         $env_val['PF_MERCHANT_KEY'] =  $request->payfast_merchant_key ? : '77jcu5v4ufdod';
         $env_val['PAYFAST_PASSPHRASE'] =  $request->payfast_passphrase ? : 'testpayfastsohan';
@@ -930,33 +886,18 @@ class GeneralSettingsController extends Controller
         $env_val['INSTAMOJO_PASSWORD'] =  $request->instamojo_password ? : '';
         $env_val['INSTAMOJO_TEST_MODE'] =  $request->instamojo_test_mode ? true : false;
 
-        $env_val['MERCADO_PAGO_CLIENT_ID'] = $request->marcado_pago_client_id ? : 'TEST-0a3cc78a-57bf-4556-9dbe-2afa06347769';
-        $env_val['MERCADO_PAGO_CLIENT_SECRET'] = $request->marcado_pago_client_secret ? : 'TEST-4644184554273630-070813-7d817e2ca1576e75884001d0755f8a7a-786499991';
-        $env_val['MERCADO_PAGO_TEST_MODE'] = $request->marcadopago_test_mode ? true : false;
-
-        $env_val['SQUAREUP_ACCESS_TOKEN'] = $request->squareup_access_token ;
-        $env_val['SQUAREUP_LOCATION_ID'] = $request->squareup_location_id;
-        $env_val['SQUAREUP_ACCESS_TEST_MODE'] = $request->squareup_test_mode ? true : false;
-
-        $env_val['CINETPAY_API_KEY'] = $request->cinetpay_api_key ??  '12912847765bc0db748fdd44.40081707';
-        $env_val['CINETPAY_SITE_ID'] = $request->cinetpay_site_id ?? '445160';
-        $env_val['CINETPAY_TEST_MODE'] = $request->cinetpay_test_mode ? true : false;
-
-
-        $env_val['PAYTABS_CURRENCY'] = $request->pay_tabs_currency ??  'USD';
-        $env_val['PAYTABS_PROFILE_ID'] = $request->pay_tabs_profile_id ?? '96698';
-        $env_val['PAYTABS_REGION'] = $request->pay_tabs_region ?? 'GLOBAL';
-        $env_val['PAYTABS_SERVER_KEY'] = $request->pay_tabs_server_key ?? 'SKJNDNRHM2-JDKTZDDH2N-H9HLMJNJ2L';
-        $env_val['PAYTABS_TEST_MODE'] = $request->paytabs_test_mode ? true : false;
-
-        $env_val['BILLPLZ_KEY'] = $request->billplz_key ??  'b2ead199-e6f3-4420-ae5c-c94f1b1e8ed6';
-        $env_val['BILLPLZ_VERSION'] = $request->billplz_version ?? 'v4';
-        $env_val['BILLPLZ_X_SIGNATURE'] = $request->billplz_x_signature ?? 'S-HDXHxRJB-J7rNtoktZkKJg';
-        $env_val['BILLPLZ_COLLECTION_NAME'] = $request->billplz_collection_name ?? 'kjj5ya006';
-        $env_val['BILLPLZ_TEST_MODE'] = $request->billplz_test_mode ? true : false;
-
         $env_val['ZITOPAY_USERNAME'] = $request->zitopay_username ?? 'dvrobin4';
         $env_val['ZITOPAY_TEST_MODE'] = $request->zitopay_test_mode ? 1 : 0;
+
+        $env_val['SSLC_STORE_ID'] = $request->ssl_commerz_store_id ? : 'aabbr628a827f92355';
+        $env_val['SSLC_STORE_PASSWORD'] =  $request->ssl_commerz_store_password ? : 'aabbr628a827f92355@ssl';
+        $env_val['SSLC_STORE_CURRENCY'] =  get_static_option('site_global_currency');
+        $env_val['SSLC_ALLOW_LOCALHOST'] = $request->ssl_commerz_test_mode  ? 'true' : 'false';
+
+
+        $local_url = 'https://sandbox.sslcommerz.com';
+        $live_url =  'https://securepay.sslcommerz.com';
+        $env_val['SSLC_DOMAIN'] = $request->ssl_commerz_test_mode  ? $local_url : $live_url;
 
         setEnvValue($env_val);
         Artisan::call('cache:clear');

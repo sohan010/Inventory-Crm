@@ -17,8 +17,10 @@
     </div>
 
     <div class="card-body">
-        <form action="">
+        <form action="<?php echo e(route('admin.cart.order.store')); ?>" method="post" class="pos_order_form" enctype="multipart/form-data">
+            <?php echo csrf_field(); ?>
             <div class="row">
+
                    <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
 <?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.form-fields.text','data' => ['label' => ''.e(__('Bill Date')).'','col' => '6','name' => 'bill_date','innerClass' => 'bill_date bill_date','icon' => 'time','placeholder' => 'Click to set date']]); ?>
 <?php $component->withName('form-fields.text'); ?>
@@ -33,11 +35,11 @@
 <?php endif; ?>
 
                     <?php if (isset($component)) { $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4 = $component; } ?>
-<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.form-fields.select','data' => ['name' => 'feature','marginTop' => 'mt-0','customClass' => 'select2 pos_customer_selectbox','label' => ''.e(__('Select Customer')).'','col' => '6']]); ?>
+<?php $component = $__env->getContainer()->make(Illuminate\View\AnonymousComponent::class, ['view' => 'components.form-fields.select','data' => ['name' => 'customer_id','marginTop' => 'mt-0','customClass' => 'select2 pos_customer_selectbox','label' => ''.e(__('Select Customer')).'','col' => '6']]); ?>
 <?php $component->withName('form-fields.select'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php $component->withAttributes(['name' => 'feature','margin-top' => 'mt-0','customClass' => 'select2 pos_customer_selectbox','label' => ''.e(__('Select Customer')).'','col' => '6']); ?>
+<?php $component->withAttributes(['name' => 'customer_id','margin-top' => 'mt-0','customClass' => 'select2 pos_customer_selectbox','label' => ''.e(__('Select Customer')).'','col' => '6']); ?>
                         <?php $__currentLoopData = $all_customers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $customer): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <option value="<?php echo e($customer->id); ?>"><?php echo e($customer->name); ?></option>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -47,6 +49,30 @@
 <?php $component = $__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4; ?>
 <?php unset($__componentOriginalc254754b9d5db91d5165876f9d051922ca0066f4); ?>
 <?php endif; ?>
+
+                <input type="hidden" name="product_id[]" class="main_product_id">
+                <input type="hidden" name="single_quantity[]" class="main_single_quantity">
+                <input type="hidden" name="total_quantity" class="main_total_quantity">
+                <input type="hidden" name="quantity" class="main_quantity">
+                <input type="hidden" name="subtotal" class="main_subtotal">
+
+                <input type="hidden" name="discount_type" class="main_discount_type">
+                <input type="hidden" name="discount_percentage" class="main_discount_percentage">
+                <input type="hidden" name="discount_amount" class="main_discount_amount">
+
+                <input type="hidden" name="coupon_discount_type" class="main_coupon_discount_type">
+                <input type="hidden" name="coupon_percentage" class="main_coupon_percentage">
+                <input type="hidden" name="coupon_discount" class="main_coupon_discount">
+
+                <input type="hidden" name="vat_percentage" class="main_vat_percentage">
+                <input type="hidden" name="vat_amount" class="main_vat_amount">
+
+                <input type="hidden" name="shipping_amount" class="main_shipping_amount">
+                <input type="hidden" name="payable_amount" class="main_payable_amount">
+                <input type="hidden" name="due_amount" class="main_due_amount">
+                <input type="hidden" name="total_amount" class="main_total_amount">
+
+                <input type="hidden" name="making_full_due" class="main_making_full_due">
 
 
                 <div class="col-md-12">

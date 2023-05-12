@@ -7,6 +7,7 @@
       <sourceFolder url="file://$MODULE_DIR$/@core/tests" isTestSource="true" packagePrefix="Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/@core/tests/Feature" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/@core/tests/Unit" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/@core/spec" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/@core/vendor/nikic/php-parser" />
       <excludeFolder url="file://$MODULE_DIR$/@core/vendor/intervention/image" />
       <excludeFolder url="file://$MODULE_DIR$/@core/vendor/spatie/image" />
@@ -141,6 +142,12 @@
       <excludeFolder url="file://$MODULE_DIR$/@core/storage/framework" />
       <excludeFolder url="file://$MODULE_DIR$/@core/vendor/picqer/php-barcode-generator" />
       <excludeFolder url="file://$MODULE_DIR$/@core/vendor/_laravel_idea" />
+      <excludeFolder url="file://$MODULE_DIR$/@core/vendor/anandsiddharth/laravel-paytm-wallet" />
+      <excludeFolder url="file://$MODULE_DIR$/@core/vendor/mollie/laravel-mollie" />
+      <excludeFolder url="file://$MODULE_DIR$/@core/vendor/mollie/mollie-api-php" />
+      <excludeFolder url="file://$MODULE_DIR$/@core/vendor/dgvai/laravel-sslcommerz" />
+      <excludeFolder url="file://$MODULE_DIR$/@core/vendor/stripe/stripe-php" />
+      <excludeFolder url="file://$MODULE_DIR$/@core/vendor/midtrans/midtrans-php" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

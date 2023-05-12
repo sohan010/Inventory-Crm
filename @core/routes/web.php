@@ -200,8 +200,48 @@ Route::prefix('admin-home')->middleware(['setlang:backend','adminglobalVariable'
         Route::post('/cart-coupon-discount-store', 'coupon_discount_store')->name('admin.cart.pos.coupon.discount.store');
         Route::post('/cart-vat-tax-store', 'vat_tax_store')->name('admin.product.cart.pos.vat.tax.store');
         Route::post('/cart-shipping-store', 'shipping_store')->name('admin.product.cart.pos.shipping.store');
+        Route::post('/cart-payable-store', 'payable_store')->name('admin.product.cart.pos.payable.store');
         Route::get('/cart-grand-total', 'cart_grand_total_calculation')->name('admin.product.cart.pos.grand.total');
         Route::post('/cart-customer-store', 'cart_customer_store')->name('admin.customer.ajax.store');
+        Route::post('/order-store', 'cart_order_store')->name('admin.cart.order.store');
+
+
+        //Payment Ipn Routes
+        Route::get('/mollie-ipn', 'mollie_ipn')->name('admin.order.mollie.ipn');
+    });
+
+
+    /*----------------------------------------------------------------------------------------------------------------------------
+     | PAYMENT ROUTE
+    |----------------------------------------------------------------------------------------------------------------------------*/
+    Route::controller(Admin\Payment\PaymentLogController::class)->prefix('payment')->group(function () {
+        Route::post('/order-store', 'cart_order_store')->name('admin.cart.order.store');
+
+        //Payment Ipn Routes
+        Route::get('/mollie-ipn', 'mollie_ipn')->name('admin.order.mollie.ipn');
+        Route::get('/paytm-ipn', 'paytm_ipn')->name('admin.order.paytm.ipn');
+        Route::get('/stripe-ipn', 'stripe_ipn')->name('admin.order.stripe.ipn');
+        Route::get('/midtrans-ipn', 'midtrans_ipn')->name('admin.order.midtrans.ipn');
+        Route::post('/cashfree-ipn', 'cashfree_ipn')->name('admin.order.cashfree.ipn');
+
+        //Ssl Commerz
+        Route::post('sslcommerz/success','ssl_commerz_success')->name('admin.order.ssl.payment.success');
+        Route::post('sslcommerz/failure','ssl_commerz_failed')->name('admin.order.ssl.payment.failed');
+        Route::post('sslcommerz/cancel','cancel')->name('cancel');
+        Route::post('sslcommerz/ipn','ssl_ipn')->name('payment.ipn');
+    });
+
+
+    /*----------------------------------------------------------------------------------------------------------------------------
+|PRODUCT MANAGE
+|----------------------------------------------------------------------------------------------------------------------------*/
+    Route::controller(Admin\Order\OrderManageController::class)->prefix('order')->group(function () {
+        Route::get('/list', 'index')->name('admin.order');
+        Route::get('/view/{id}', 'view')->name('admin.order.view');
+        Route::get('/price/{id}', 'print')->name('admin.order.print');
+        Route::post('/change-status', 'change_status')->name('admin.order.change.status');
+        Route::post('/delete/{id}', 'delete')->name('admin.order.delete');
+        Route::post('/bulk-action', 'bulk_action')->name('admin.order.bulk.action');
     });
 
 
@@ -213,14 +253,11 @@ Route::prefix('admin-home')->middleware(['setlang:backend','adminglobalVariable'
             Route::get('/site-identity', 'site_identity')->name('admin.general.site.identity');
             Route::post('/site-identity', 'update_site_identity');
 
-            Route::get('/color-settings', 'color_settings')->name('admin.general.color.settings');
-            Route::post('/color-settings', 'update_color_settings');
-
             Route::get('/basic-settings', 'basic_settings')->name('admin.general.basic.settings');
             Route::post('/basic-settings', 'update_basic_settings');
 
-            Route::get('/seo-settings', 'seo_settings')->name('admin.general.seo.settings');
-            Route::post('/seo-settings', 'update_seo_settings');
+            Route::get('/company-settings', 'company_settings')->name('admin.general.company.settings');
+            Route::post('/company-settings', 'update_company_settings');
 
             Route::get('/email-template', 'email_template_settings')->name('admin.general.email.template');
             Route::post('/email-template', 'update_email_template_settings');

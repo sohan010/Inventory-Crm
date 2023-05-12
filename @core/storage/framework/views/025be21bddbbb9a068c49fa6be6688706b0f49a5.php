@@ -95,16 +95,29 @@
                     </ul>
                 </li>
 
-                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->any(['employee-list','employee-create'])): ?>
+                <li> <a class="has-arrow waves-effect waves-dark" href="#!" aria-expanded="false"><i class="mdi mdi-car-battery"></i>
+                        <span class="hide-menu"><?php echo e(__('Order Manage')); ?></span></a>
+                    <ul aria-expanded="false" class="collapse">
+                            <li><a href="<?php echo e(route('admin.order')); ?>"><?php echo e(__('All Order')); ?> </a></li>
+                            <li><a href="<?php echo e(route('admin.order')); ?>"><?php echo e(__('All Reports')); ?> </a></li>
+                    </ul>
+                </li>
+
+
                     <li> <a class="has-arrow waves-effect waves-dark" href="#!" aria-expanded="false"><i class="mdi mdi-account-multiple-outline"></i>
-                            <span class="hide-menu"><?php echo e(__('HRM Manage')); ?></span></a>
+                            <span class="hide-menu"><?php echo e(__('HR Manage')); ?></span></a>
                         <ul aria-expanded="false" class="collapse">
-                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('employee-list')): ?>
                                 <li><a href="<?php echo e(route('admin.supplier')); ?>"><?php echo e(__('All Employee')); ?> </a></li>
-                            <?php endif; ?>
                         </ul>
                     </li>
-                <?php endif; ?>
+
+                <li> <a class="has-arrow waves-effect waves-dark" href="#!" aria-expanded="false"><i class="mdi mdi-cash"></i>
+                        <span class="hide-menu"><?php echo e(__('Expense Manage')); ?></span></a>
+                    <ul aria-expanded="false" class="collapse">
+                            <li><a href="<?php echo e(route('admin.supplier')); ?>"><?php echo e(__('All Expense')); ?> </a></li>
+                    </ul>
+                </li>
+
 
                 <li class="nav-small-cap"><?php echo e(__('Setting & Others')); ?></li>
 
@@ -156,12 +169,12 @@
                             <?php endif; ?>
 
                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('general-settings-seo-settings')): ?>
-                                <li><a href="<?php echo e(route('admin.general.seo.settings')); ?>"><?php echo e(__('SEO Settings')); ?></a></li>
+                                <li><a href="<?php echo e(route('admin.general.company.settings')); ?>"><?php echo e(__('Comapany Settings')); ?></a></li>
                             <?php endif; ?>
 
-
-
-
+                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('general-settings-payment-settings')): ?>
+                                    <li><a href="<?php echo e(route('admin.general.payment.settings')); ?>"><?php echo e(__('Payment Settings')); ?></a></li>
+                                <?php endif; ?>
 
                             <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('general-settings-smtp-settings')): ?>
                                 <li><a href="<?php echo e(route('admin.general.smtp.settings')); ?>"><?php echo e(__('SMTP Settings')); ?></a></li>

@@ -16,15 +16,41 @@
     </div>
 
     <div class="card-body">
-        <form action="">
+        <form action="{{route('admin.cart.order.store')}}" method="post" class="pos_order_form" enctype="multipart/form-data">
+            @csrf
             <div class="row">
+
                    <x-form-fields.text label="{{__('Bill Date')}}" col="6" name="bill_date" innerClass="bill_date bill_date" icon="time" placeholder="Click to set date"/>
 
-                    <x-form-fields.select name="feature" margin-top="mt-0" customClass="select2 pos_customer_selectbox" label="{{__('Select Customer')}}" col="6">
+                    <x-form-fields.select name="customer_id" margin-top="mt-0" customClass="select2 pos_customer_selectbox" label="{{__('Select Customer')}}" col="6">
                         @foreach($all_customers as $customer)
                             <option value="{{$customer->id}}">{{ $customer->name }}</option>
                         @endforeach
                     </x-form-fields.select>
+
+                <input type="hidden" name="product_id[]" class="main_product_id">
+                <input type="hidden" name="single_quantity[]" class="main_single_quantity">
+                <input type="hidden" name="total_quantity" class="main_total_quantity">
+                <input type="hidden" name="quantity" class="main_quantity">
+                <input type="hidden" name="subtotal" class="main_subtotal">
+
+                <input type="hidden" name="discount_type" class="main_discount_type">
+                <input type="hidden" name="discount_percentage" class="main_discount_percentage">
+                <input type="hidden" name="discount_amount" class="main_discount_amount">
+
+                <input type="hidden" name="coupon_discount_type" class="main_coupon_discount_type">
+                <input type="hidden" name="coupon_percentage" class="main_coupon_percentage">
+                <input type="hidden" name="coupon_discount" class="main_coupon_discount">
+
+                <input type="hidden" name="vat_percentage" class="main_vat_percentage">
+                <input type="hidden" name="vat_amount" class="main_vat_amount">
+
+                <input type="hidden" name="shipping_amount" class="main_shipping_amount">
+                <input type="hidden" name="payable_amount" class="main_payable_amount">
+                <input type="hidden" name="due_amount" class="main_due_amount">
+                <input type="hidden" name="total_amount" class="main_total_amount">
+
+                <input type="hidden" name="making_full_due" class="main_making_full_due">
 
 
                 <div class="col-md-12">

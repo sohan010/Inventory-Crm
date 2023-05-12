@@ -24,7 +24,7 @@
                                         <label for="site_global_currency">{{__('Site Global Currency')}}</label>
                                         <select name="site_global_currency" class="form-control"
                                                 id="site_global_currency">
-                                            @foreach(\Xgenious\Paymentgateway\Facades\XgPaymentGateway::script_currency_list() as $cur => $symbol)
+                                            @foreach(get_currency_list() as $cur => $symbol)
                                                 <option value="{{$cur}}" @if(get_static_option('site_global_currency') == $cur) selected @endif>{{$cur.' ( '.$symbol.' )'}}</option>
                                             @endforeach
                                         </select>
@@ -44,12 +44,12 @@
                                         <label for="site_default_payment_gateway">{{__('Default Payment Gateway')}}</label>
                                         <select name="site_default_payment_gateway" class="form-control" >
                                             @php
-                                                $all_gateways = ['paypal','manual_payment','mollie','paytm','stripe','razorpay','flutterwave','paystack','midtrans','payfast','cashfree','instamojo','marcadopago','squareup','cinetpay','paytabs','billplz','zitopay'];
+                                                $all_gateways = ['paypal','manual_payment','mollie','paytm','stripe','razorpay','flutterwave','paystack','midtrans','payfast','cashfree','instamojo','zitopay'];
                                             @endphp
                                             @foreach($all_gateways as $gateway)
-                                                @if(!empty(get_static_option($gateway.'_gateway')))
+{{--                                                @if(!empty(get_static_option($gateway.'_gateway')))--}}
                                                     <option value="{{$gateway}}" @if(get_static_option('site_default_payment_gateway') == $gateway) selected @endif>{{ucwords(str_replace('_',' ',$gateway))}}</option>
-                                                @endif
+{{--                                                @endif--}}
                                             @endforeach
                                         </select>
                                     </div>

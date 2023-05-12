@@ -141,6 +141,12 @@
       <path value="$PROJECT_DIR$/@core/vendor/kkomelin/laravel-translatable-string-exporter" />
       <path value="$PROJECT_DIR$/@core/vendor/picqer/php-barcode-generator" />
       <path value="$PROJECT_DIR$/@core/vendor/_laravel_idea" />
+      <path value="$PROJECT_DIR$/@core/vendor/mollie/laravel-mollie" />
+      <path value="$PROJECT_DIR$/@core/vendor/mollie/mollie-api-php" />
+      <path value="$PROJECT_DIR$/@core/vendor/anandsiddharth/laravel-paytm-wallet" />
+      <path value="$PROJECT_DIR$/@core/vendor/stripe/stripe-php" />
+      <path value="$PROJECT_DIR$/@core/vendor/dgvai/laravel-sslcommerz" />
+      <path value="$PROJECT_DIR$/@core/vendor/midtrans/midtrans-php" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.0" />

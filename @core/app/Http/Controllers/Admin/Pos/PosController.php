@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin\Pos;
 use App\Actions\ProductAction;
 use App\Coupon;
 use App\Customer;
+use App\Http\Traits\PaymentOrderIpn;
+use App\Order;
+use App\OrderProduct;
 use App\Product\Brand;
 use App\Product\Color;
 use App\Product\PoductSubCategory;
@@ -19,10 +22,15 @@ use App\User;
 use App\VirtualCart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
+use Mollie\Laravel\Facades\Mollie;
+
 
 class PosController extends Controller
 {
+
+
     private const BASE_PATH = 'backend.pos.';
 
     public function __construct()
@@ -103,14 +111,22 @@ class PosController extends Controller
     {
         $all_cart_products = VirtualCart::where('status',1)->get();
         $cart_total_amount =  VirtualCart::where('status',1)->sum('total_price');
-
         $all_data = view('backend.pos.partials.js-string-blade.cart-data',compact('all_cart_products'))->render();
         $cart_data = $all_data;
         $count_data = count($all_cart_products);
 
+
+        //For main input passing
+        $product_ids =  VirtualCart::pluck('product_id')->toArray();
+        $single_qty =  VirtualCart::pluck('quantity')->toArray();
+        $total_qty =  VirtualCart::sum('quantity');
+
         return response()->json(['data' => $cart_data,
             'count_result' => $count_data,
-            'total' => $cart_total_amount
+            'total' => $cart_total_amount,
+            'product_ids' => $product_ids,
+            'single_qty' => $single_qty,
+            'total_qty' => $total_qty,
         ]);
     }
 
@@ -206,7 +222,7 @@ class PosController extends Controller
         return response()->json([
             'amount' => $get_discount_amount,
             'discount_type' => $discount_type,
-            'discount_amount' => $discount_amount
+            'discount_amount' => $discount_type == 'percentage' ? $discount_amount : 0
         ]);
     }
 
@@ -243,7 +259,7 @@ class PosController extends Controller
         return response()->json([
             'amount' => $get_discount_amount,
             'discount_type' => $discount_type,
-            'discount_amount' => $discount_amount
+            'discount_amount' =>  $discount_type == 'percentage' ? $discount_amount : 0
         ]);
     }
 
@@ -292,6 +308,28 @@ class PosController extends Controller
         ]);
     }
 
+    public function payable_store(Request $request)
+    {
+        $request->validate(['payable_amount' => 'required']);
+
+        $zero_payable_condition = false;
+        if($request->payable_amount == 0){
+            $zero_payable_condition = true;
+        }
+
+        $payable_amount = $request->payable_amount ?? 0;
+        $subtotal_amount = $request->subtotal_amount;
+
+        return response()->json([
+            'payable_amount' => $payable_amount,
+            'subtotal_amount' => $subtotal_amount,
+            'is_zero' => $zero_payable_condition
+        ]);
+    }
+
+
+
+
     public function cart_grand_total_calculation(Request $request)
     {
         $subtotal = VirtualCart::sum('total_price');
@@ -305,9 +343,11 @@ class PosController extends Controller
 
         $vat_tax_amount = str_replace($plus_and_dollar,$replace_array,$request->vat_tax_amount) ?? 0;
         $shipping_amount = str_replace($plus_and_dollar,$replace_array,$request->shipping_amount) ?? 0;
+        $payable_amount = str_replace('$','',$request->payable_amount) ?? 0;
 
-        $grand_total = ($subtotal-$discount_amount-$coupon_amount);
+        $grand_total = ($subtotal - $discount_amount-$coupon_amount);
         $grand_total = $grand_total + ($vat_tax_amount+$shipping_amount);
+        $due_amount = ($grand_total - $payable_amount);
 
         if($grand_total < 1){
             return response()->json([
@@ -316,7 +356,11 @@ class PosController extends Controller
             ]);
         }
 
-       return response()->json(['grand_total' =>$grand_total]);
+       return response()->json([
+           'grand_total' =>$grand_total,
+           'payable_amount' => $payable_amount,
+           'due_amount' => $due_amount
+       ]);
     }
 
     public function cart_customer_store(Request $request)
@@ -354,5 +398,6 @@ OPTION;
             'data' => $data
         ]);
     }
+
 
 }

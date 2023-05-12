@@ -30,26 +30,7 @@
                                 <button id="form_submit" class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">Log In</button>
                             </div>
                         </div>
-
-
                     </form>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 </div>
             </div>
         </div>

@@ -134,7 +134,7 @@
                 <div class="notfound-404">
                     <h1>{{__('419')}}</h1>
                     <h3>{{__('Page Expired')}}</h3>
-                    <a href="{{route('homepage')}}">{{__('back to home')}}</a>
+                    <a href="{{route('admin.order')}}">{{__('back to home')}}</a>
                 </div>
             </div>
         </div>

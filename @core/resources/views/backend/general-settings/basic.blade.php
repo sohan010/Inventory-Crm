@@ -48,32 +48,6 @@
 
 
                             <div class="form-group">
-                                <label for="og_meta_image_for_site"><strong>{{__('Og Meta Image For Site')}}</strong></label>
-                                <div class="media-upload-btn-wrapper">
-                                    <div class="img-wrap">
-                                        @php
-                                            $blog_img = get_attachment_image_by_id(get_static_option('og_meta_image_for_site'),null,true);
-                                            $blog_image_btn_label = 'Upload Image';
-                                        @endphp
-                                        @if (!empty($blog_img))
-                                            <div class="attachment-preview">
-                                                <div class="thumbnail">
-                                                    <div class="centered">
-                                                        <img class="avatar user-thumb" src="{{$blog_img['img_url']}}" alt="">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            @php  $blog_image_btn_label = 'Change Image'; @endphp
-                                        @endif
-                                    </div>
-                                    <input type="hidden" id="og_meta_image_for_site" name="og_meta_image_for_site" value="{{get_static_option('og_meta_image_for_site')}}">
-                                    <button type="button" class="btn btn-info media_upload_form_btn" data-btntitle="Select Image" data-modaltitle="Upload Image" data-toggle="modal" data-target="#media_upload_modal">
-                                        {{__($blog_image_btn_label)}}
-                                    </button>
-                                </div>
-                                <small class="form-text text-muted">{{__('allowed image format: jpg,jpeg,png. Recommended image size 1200x900')}}</small>
-                            </div>
-                            <div class="form-group">
                                 <label for="site_sticky_navbar_enabled"><strong>{{__('Sticky Navbar Enable/Disable')}}</strong></label>
                                 <label class="switch">
                                     <input type="checkbox" name="site_sticky_navbar_enabled"  @if(!empty(get_static_option('site_sticky_navbar_enabled'))) checked @endif id="site_sticky_navbar_enabled">
@@ -81,13 +55,7 @@
                                 </label>
                             </div>
 
-                            <div class="form-group">
-                                <label for="site_maintenance_mode"><strong>{{__('Maintenance Mode')}}</strong></label>
-                                <label class="switch yes">
-                                    <input type="checkbox" name="site_maintenance_mode"  @if(!empty(get_static_option('site_maintenance_mode'))) checked @endif id="site_maintenance_mode">
-                                    <span class="slider onff"></span>
-                                </label>
-                            </div>
+
 
                             <div class="form-group">
                                 <label for="site_admin_panel_nav_sticky"><strong>{{__('Enable/Disable Admin Panel Nav Sticky')}}</strong></label>
@@ -125,14 +93,7 @@
                                 </label>
                                 <small class="info-text">{{__('No, means user must have to verify their email account in order access his/her dashboard.')}}</small>
                             </div>
-                            <div class="form-group">
-                                <label for="preloader_status"><strong>{{__('Enable/Disable Frontend Preloader')}}</strong></label>
-                                <label class="switch">
-                                    <input type="checkbox" name="preloader_status"  @if(!empty(get_static_option('preloader_status'))) checked @endif >
-                                    <span class="slider onff"></span>
-                                </label>
-                                <small class="info-text">{{__('enable disable preloader')}}</small>
-                            </div>
+
 
                             <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">{{__('Update Changes')}}</button>
                         </form>

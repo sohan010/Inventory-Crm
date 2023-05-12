@@ -1,4 +1,15 @@
 <?php return array (
+  'anandsiddharth/laravel-paytm-wallet' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Anand\\LaravelPaytmWallet\\PaytmWalletServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'PaytmWallet' => 'Anand\\LaravelPaytmWallet\\Facades\\PaytmWallet',
+    ),
+  ),
   'barryvdh/laravel-dompdf' => 
   array (
     'providers' => 
@@ -7,7 +18,14 @@
     ),
     'aliases' => 
     array (
-      'PDF' => 'Barryvdh\\DomPDF\\Facade',
+      'PDF' => 'Barryvdh\\DomPDF\\Facade\\Pdf',
+    ),
+  ),
+  'dgvai/laravel-sslcommerz' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'DGvai\\SSLCommerz\\SSLCommerzServiceProvider',
     ),
   ),
   'facade/ignition' => 
@@ -87,6 +105,17 @@
     'aliases' => 
     array (
       'Purifier' => 'Mews\\Purifier\\Facades\\Purifier',
+    ),
+  ),
+  'mollie/laravel-mollie' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Mollie\\Laravel\\MollieServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Mollie' => 'Mollie\\Laravel\\Facades\\Mollie',
     ),
   ),
   'nesbot/carbon' => 

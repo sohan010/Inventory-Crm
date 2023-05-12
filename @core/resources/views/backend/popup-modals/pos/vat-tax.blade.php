@@ -15,7 +15,7 @@
 
                         <div class="row">
                             <x-form-fields.select name="vat_tax" label="{{__('Select Tax')}}" col="12" marginTop="mt-0 mb-3" customClass="vat_tax">
-                                <option value="0">{{ __('None') }}</option>
+                                <option value="0" selected>{{ __('None') }}</option>
                                 <option value="5">{{ __('Vat 5%') }}</option>
                                 <option value="10">{{ __('Vat 10%') }}</option>
                                 <option value="15">{{ __('Vat 15%') }}</option>
